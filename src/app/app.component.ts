@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
+import { Component } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
 import { MenuComponent } from "./components/menu/menu.component";
 
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [RouterOutlet, LoginComponent, MenuComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [RouterOutlet, MenuComponent],
+  templateUrl: "./app.component.html",
+  styleUrl: "./app.component.css",
 })
 export class AppComponent {
   title = "terrain-petanque-frontend";
