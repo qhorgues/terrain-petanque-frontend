@@ -8,7 +8,7 @@ import {merge} from 'rxjs';
 @Component({
   selector: 'app-email-field',
   standalone: true,
-  imports: [],
+  imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
   templateUrl: './email-field.component.html',
   styleUrl: './email-field.component.css'
 })

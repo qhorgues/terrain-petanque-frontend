@@ -7,11 +7,14 @@ import {MatIconModule} from '@angular/material/icon';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {merge} from 'rxjs';
+import { EmailFieldComponent } from "../../components/email-field/email-field.component";
+import { PasswordFieldComponent } from "../../components/password-field/password-field.component";
+import { ConfirmButtonComponent } from "../../components/confirm-button/confirm-button.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatFormFieldModule, MatButtonModule, MatSelectModule, MatIconModule, MatInputModule, FormsModule, ReactiveFormsModule],
+  imports: [MatFormFieldModule, MatButtonModule, MatSelectModule, MatIconModule, MatInputModule, FormsModule, ReactiveFormsModule, EmailFieldComponent, PasswordFieldComponent, ConfirmButtonComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
