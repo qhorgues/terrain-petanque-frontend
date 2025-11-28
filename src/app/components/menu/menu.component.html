@@ -1,0 +1,34 @@
+<mat-toolbar color="secondary">
+  <!-- Menu hamburger (visible uniquement sur mobile) -->
+  <button mat-icon-button (click)="toggleSidenav()" color="primary" class="menu-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- Logo/Titre -->
+  <a routerLink="/" class="app-title-link">
+    Terrain petanque
+  </a>
+
+  <!-- Menu desktop (visible uniquement sur grand écran) -->
+  <nav class="desktop-menu">
+    <a mat-button routerLink="/terrains" routerLinkActive="active" color="primary">
+      <mat-icon>sports</mat-icon>
+      Terrains
+    </a>
+    <a mat-button routerLink="/reservations" routerLinkActive="active" color="primary">
+      <mat-icon>event</mat-icon>
+      Réservations
+    </a>
+    <a mat-button routerLink="/users" routerLinkActive="active" color="primary">
+      <mat-icon>supervisor_account</mat-icon>
+      Liste des utilisateurs
+    </a>
+  </nav>
+
+  <span class="spacer"></span>
+
+  <!-- Bouton compte (toujours visible) -->
+  <button mat-icon-button routerLink="/login" color="primary">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>

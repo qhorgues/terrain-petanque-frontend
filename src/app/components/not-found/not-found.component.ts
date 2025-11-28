@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
 
 @Component({
-  selector: 'app-not-found',
+  selector: "app-not-found",
   standalone: true,
-  imports: [],
-  templateUrl: './not-found.component.html',
-  styleUrl: './not-found.component.css'
+  imports: [MatButtonModule, MatCardModule],
+  templateUrl: "./not-found.component.html",
+  styleUrl: "./not-found.component.css",
 })
-export class NotFoundComponent {
-
-}
+export class NotFoundComponent {}
