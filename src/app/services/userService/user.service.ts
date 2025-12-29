@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs'
-import { User } from '../../models/user';
+import { UserInputInterface } from '../../interfaces/input/userInputInterface';
+import { UserOutputInterface } from '../../interfaces/output/userOutputInterface';
 
 /**
  * This class is a service to get CRUD operation for users from the backend.
@@ -20,7 +21,7 @@ export class UserService {
 
     /**
      * The constructor.
-     * 
+     *
      * @param http Dependency injection of a httpClient. HttpClient can send and fetch information from the backend.
      */
     constructor(private http : HttpClient) {}
@@ -29,42 +30,42 @@ export class UserService {
 
     /**
      * This method returns all the users.
-     * 
+     *
      * @returns Return all the users.
      */
-    getAllUsers() : Observable<User[]> {
-        return this.http.get<User[]>(this.apiURL);
+    getAllUsers() : Observable<UserOutputInterface[]> {
+        return this.http.get<UserOutputInterface[]>(this.apiURL);
     }
 
 
 
     /**
      * This method returns a specific user.
-     * 
+     *
      * @param userId The user's id.
      * @returns Return the user.
      */
-    getUser(userId : number) : Observable<User> {
-        return this.http.get<User>(this.apiURL, {params: new HttpParams().set("id", userId)});
+    getUser(userId : number) : Observable<UserOutputInterface> {
+        return this.http.get<UserOutputInterface>(this.apiURL, {params: new HttpParams().set("id", userId)});
     }
 
 
 
     /**
-     * This method add a user.
-     * 
+     * This method creates a user.
+     *
      * @param user The user's informations.
      * @return Return the user added.
      */
-    addUser(user : User) : Observable<User> {
-        return this.http.post<User>(this.apiURL, user);
+    createUser(user : UserInputInterface) : Observable<UserOutputInterface> {
+        return this.http.post<UserOutputInterface>(this.apiURL, user);
     }
 
 
 
     /**
      * This method delete a user.
-     * 
+     *
      * @param userId The user's id.
      * @return Return nothing.
      */
@@ -76,25 +77,25 @@ export class UserService {
 
     /**
      * This method partially update a user.
-     * 
+     *
      * @param user The user's informations.
      * @param userId The user's id.
      * @return Return the user updated.
      */
-    partialUpdateUser(user : User, userId : number) : Observable<User> {
-        return this.http.patch<User>(this.apiURL, user, {params: new HttpParams().set("id", userId)});
+    partialUpdateUser(user : UserInputInterface, userId : number) : Observable<UserOutputInterface> {
+        return this.http.patch<UserOutputInterface>(this.apiURL, user, {params: new HttpParams().set("id", userId)});
     }
 
 
 
     /**
      * This method fully update a user.
-     * 
+     *
      * @param user The user's informations.
      * @param userId The user's id.
      * @return Return the user updated.
      */
-    fullyUpdateUser(user : User, userId : number) : Observable<User> {
-        return this.http.put<User>(this.apiURL, user, {params: new HttpParams().set("id", userId)});
+    fullyUpdateUser(user : UserInputInterface, userId : number) : Observable<UserOutputInterface> {
+        return this.http.put<UserOutputInterface>(this.apiURL, user, {params: new HttpParams().set("id", userId)});
     }
 }

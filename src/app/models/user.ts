@@ -1,8 +1,0 @@
-export interface User {
-    id: number
-    name: string
-    surname: string
-    mail: string
-    password: string
-    username: string
-}
