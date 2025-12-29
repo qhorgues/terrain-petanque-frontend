@@ -24,6 +24,7 @@ export class UserService {
     * The constructor.
     *
     * @param http Dependency injection of a httpClient. HttpClient can send and fetch information from the backend.
+    * @param authService Dependency injection of the authentification service.
     */
   constructor(private http : HttpClient, private authService : AuthService) {}
 
