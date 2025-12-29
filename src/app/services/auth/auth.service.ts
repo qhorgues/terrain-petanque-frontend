@@ -34,8 +34,8 @@ export class AuthService {
    * @returns Return the token. Null if the token is not in the storage.
    */
   getToken(): JWTInterface | null {
-    const result = localStorage.getItem(this.tokenId);
-    if (result == null) return null;
+    const result = sessionStorage.getItem(this.tokenId);
+    if (result === null) return null;
 
     return jwtDecode<JWTInterface>(result);
   }
@@ -46,7 +46,7 @@ export class AuthService {
    * This method remove the token from the storage (so make a logout).
    */
   logout(): void {
-    localStorage.removeItem(this.tokenId);
+    sessionStorage.removeItem(this.tokenId);
   }
 
 
@@ -57,7 +57,7 @@ export class AuthService {
    * @returns Return true if it in the storage, false otherwise.
    */
   isLoggedIn(): boolean {
-    return this.getToken() != null;
+    return this.getToken() !== null;
   }
 
 }
