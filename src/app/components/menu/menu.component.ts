@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, input } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { MatDrawer, MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
@@ -14,18 +14,18 @@ import { NavigationComponent } from "../navigation/navigation.component";
   styleUrl: "./menu.component.css",
 })
 export class MenuComponent {
-  @Input() drawer!: MatDrawer;
+  drawer = input<MatDrawer>();
 
   toggleSidenav() {
-    this.drawer.toggle();
+    this.drawer()?.toggle();
   }
 
   closeSidenav() {
-    this.drawer.close();
+    this.drawer()?.close();
   }
 
   openSidenav() {
-    this.drawer.open();
+    this.drawer()?.open();
   }
 
 }
