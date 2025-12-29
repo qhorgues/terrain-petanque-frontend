@@ -27,3 +27,86 @@ body {
   background-color: var(--background-color);
   color: var(--primary-color);
 }
+
+/* By pass Angular Material CSS */
+
+.mat-mdc-form-field .mdc-notched-outline__leading,
+.mat-mdc-form-field .mdc-notched-outline__notch,
+.mat-mdc-form-field .mdc-notched-outline__trailing {
+  border-color: #222!important;
+}
+
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: var(--primary-color)!important;
+}
+
+.mat-mdc-form-field.mat-form-field-invalid
+.mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-form-field-invalid
+.mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-form-field-invalid
+.mdc-notched-outline__trailing {
+  border-color: red!important;
+}
+
+.mat-mdc-form-field .mdc-floating-label--float-above {
+  color: #222!important;
+}
+
+
+.mat-mdc-form-field.mat-focused .mdc-floating-label {
+  color: var(--primary-color)!important;
+}
+
+.mat-mdc-form-field.mat-form-field-invalid .mdc-floating-label {
+  color: red!important;
+}
+
+.mat-mdc-form-field .mdc-floating-label {
+  color: #222!important;
+}
+
+.mat-mdc-form-field .mat-mdc-input-element {
+  color: #222!important;
+}
+
+.mat-mdc-form-field .mat-mdc-input-element::placeholder {
+  color: #222!important;
+}
+
+.mat-mdc-form-field .mat-mdc-input-element {
+  caret-color: var(--primary-color)!important;
+}
+
+.mat-mdc-form-field.mat-form-field-invalid .mat-mdc-input-element {
+  caret-color: red!important;
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+  .mat-mdc-form-field .mdc-notched-outline__leading,
+  .mat-mdc-form-field .mdc-notched-outline__notch,
+  .mat-mdc-form-field .mdc-notched-outline__trailing {
+    border-color: white!important;
+  }
+
+  .mat-mdc-form-field .mdc-floating-label--float-above {
+    color: white!important;
+  }
+
+  .mat-mdc-form-field .mdc-floating-label {
+    color: white!important;
+  }
+
+  .mat-mdc-form-field .mat-mdc-input-element {
+    color: white!important;
+  }
+
+  .mat-mdc-form-field .mat-mdc-input-element::placeholder {
+    color: white!important;
+  }
+
+}
