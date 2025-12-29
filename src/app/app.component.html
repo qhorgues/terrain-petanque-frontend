@@ -1,4 +1,13 @@
-<app-menu></app-menu>
+<mat-drawer-container>
+<app-menu [drawer]="drawer"></app-menu>
+  <mat-drawer #drawer mode="over">
+    <button mat-icon-button class="menu-button" (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <app-navigation/>
+  </mat-drawer>
 <div class="app">
 <router-outlet></router-outlet>
 </div>
+</mat-drawer-container>

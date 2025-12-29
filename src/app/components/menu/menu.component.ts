@@ -1,44 +1,31 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { RouterLink } from "@angular/router";
-import { MatSidenav } from "@angular/material/sidenav";
+import { MatDrawer, MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { BreakpointObserver } from "@angular/cdk/layout";
+import { NavigationComponent } from "../navigation/navigation.component";
 
 @Component({
   selector: "app-menu",
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, MatToolbarModule, RouterLink],
+  imports: [MatIconModule, MatButtonModule, MatToolbarModule, RouterLink, MatSidenavModule, NavigationComponent],
   templateUrl: "./menu.component.html",
   styleUrl: "./menu.component.css",
 })
 export class MenuComponent {
-  @ViewChild("sidenav") sidenav!: MatSidenav;
+  @Input() drawer!: MatDrawer;
 
   toggleSidenav() {
-    this.sidenav.toggle();
+    this.drawer.toggle();
   }
 
   closeSidenav() {
-    this.sidenav.close();
+    this.drawer.close();
   }
 
   openSidenav() {
-    this.sidenav.open();
+    this.drawer.open();
   }
 
-  constructor(private breakpointObserver: BreakpointObserver) {
-    this.breakpointObserver
-      .observe(["(max-width: 768px)"])
-      .subscribe((result) => {
-        if (result.matches) {
-          this.sidenav.mode = "over";
-          this.sidenav.close();
-        } else {
-          this.sidenav.mode = "side";
-          this.sidenav.open();
-        }
-      });
-  }
 }

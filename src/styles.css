@@ -1,4 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+  --primary-color: #48f;
+  --secondary-color: #468;
+  --background-color: white;
+  --secondary-background-color: #ddd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #8cf;
+    --secondary-color: #8ac;
+    --background-color: #222;
+    --secondary-background-color: #444;
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}

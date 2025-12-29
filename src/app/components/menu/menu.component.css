@@ -1,184 +1,51 @@
-@use "@angular/material" as mat;
-
-.sidenav-container {
-  height: 100%;
-}
-
-mat-sidenav {
-  width: 250px;
-}
-
-.spacer {
-  flex: 1 1 auto;
-}
-
-.content {
-  padding: 16px;
-}
-
-mat-nav-list a {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.app-title-link {
-  text-decoration: none;
-  color: var(--mat-option-selected-state-label-text-color);
-  font-size: 100%;
-  font-weight: 500;
-
-  &:hover,
-  &:visited,
-  &:active,
-  &:focus {
-    color: var(--mat-option-selected-state-label-text-color);
-    text-decoration: none;
-    opacity: 0.85;
-  }
-}
-
-.app-title {
-  color: --primary;
-  margin: 0;
-  font-size: 20px;
-  font-weight: 500;
-}
-
-/* Toolbar */
 mat-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  box-shadow: 0 0 0 var(--secondary-background-color),
+              0px 5px 5px var(--secondary-background-color);
+  z-index: 2;
 }
 
-/* Logo/Titre */
-.app-title-link {
-  text-decoration: none;
-  color: var(--mat-sys-primary);
-  font-size: 20px;
-  font-weight: 500;
-  transition: opacity 0.2s;
-  margin-right: 24px;
+mat-drawer-container {
+  background-color: var(--background-color);
+  color: var(--primary-color);
 }
 
-.app-title-link:hover {
-  opacity: 0.85;
-}
-
-/* Spacer */
-.spacer {
-  flex: 1 1 auto;
-}
-
-/* Menu Desktop - Caché sur mobile */
-.desktop-menu {
-  display: none;
-  gap: 8px;
-  align-items: center;
-}
-
-.desktop-menu a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  transition: background-color 0.2s;
-}
-
-.desktop-menu a.active {
-  background-color: rgba(103, 80, 164, 0.12);
-}
-
-.desktop-menu mat-icon {
-  font-size: 20px;
-  height: 20px;
-  width: 20px;
-}
-
-/* Bouton menu hamburger - Visible uniquement sur mobile */
 .menu-button {
-  display: block;
-  margin-right: 8px;
+  display: none;
 }
 
-/* Media query pour tablettes et desktop */
-@media (min-width: 768px) {
-  .desktop-menu {
-    display: flex;
+mat-toolbar a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover, button:hover {
+  background-color: color-mix(in oklab, var(--secondary-color) 10%, #0000);
+}
+
+app-navigation {
+  width: 50%;
+}
+
+.profile {
+  position: absolute;
+  right: 15px;
+}
+
+@media (max-width:800px) {
+  .menu-button {
+    display: block;
   }
 
-  .menu-button {
+  .desktopnav {
     display: none;
   }
-}
 
-/* Sidenav Container */
-.sidenav-container {
-  height: calc(100vh - 64px);
-}
-
-/* Sidenav Mobile */
-.mobile-sidenav {
-  width: 280px;
-}
-
-.sidenav-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-  background-color: var(--mat-sys-secondary);
-  color: white;
-}
-
-.sidenav-header h2 {
-  margin: 0;
-  font-size: 20px;
-}
-
-/* Liens actifs dans le sidenav */
-mat-nav-list a.active {
-  background-color: rgba(103, 80, 164, 0.12);
-  color: var(--mat-sys-primary);
-}
-
-mat-nav-list a.active mat-icon {
-  color: var(--mat-sys-primary);
-}
-
-/* Contenu principal */
-.content {
-  padding: 20px;
-  min-height: calc(100vh - 84px);
-}
-
-/* Responsive pour très petits écrans */
-@media (max-width: 599px) {
-  .app-title-link {
-    font-size: 16px;
-    margin-right: 8px;
-  }
-
-  mat-toolbar {
-    padding: 0 8px;
-  }
-
-  .content {
-    padding: 16px;
-  }
-}
-
-/* Responsive pour grands écrans */
-@media (min-width: 1200px) {
-  .desktop-menu {
-    gap: 12px;
-  }
-
-  .content {
-    padding: 32px;
-    max-width: 1200px;
-    margin: 0 auto;
+  mat-drawer {
+    position: absolute;
+    height: 100vh;
+    z-index: 10000;
   }
 }
