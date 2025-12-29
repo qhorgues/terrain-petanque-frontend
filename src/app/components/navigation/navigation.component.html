@@ -1,12 +1,23 @@
 <nav>
-  <a mat-button routerLink="/terrains" routerLinkActive="active" color="primary">
-    <mat-icon>sports</mat-icon> Terrains
-  </a>
+  @if (isConnect) {
+    <a mat-button routerLink="/terrains">
+      <mat-icon>sports</mat-icon> Terrains
+    </a>
 
-  <a mat-button routerLink="/reservations" routerLinkActive="active" color="primary">
-    <mat-icon>event</mat-icon> Réservations
-  </a>
-  <a mat-button routerLink="/users" routerLinkActive="active" color="primary">
-    <mat-icon>supervisor_account</mat-icon> Liste des utilisateurs
-  </a>
+    <a mat-button routerLink="/reservations">
+      <mat-icon>event</mat-icon> Réservations
+    </a>
+    <a mat-button routerLink="/users">
+      <mat-icon>supervisor_account</mat-icon> Liste des utilisateurs
+    </a>
+  }
+  @else {
+    <a mat-button routerLink="/login">
+      <mat-icon>account_box</mat-icon> Log in
+    </a>
+
+    <a mat-button routerLink="/signin">
+      <mat-icon>assignment_ind</mat-icon> Sign in
+    </a>
+  }
 </nav>
