@@ -1,6 +1,6 @@
 <h1>Connection</h1>
 <div>
-    <form (ngSumbit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()">
         <app-email-field (email)="updateMail($event)"/>
         <app-password-field (password)="updatePassword($event)"/>
         <app-confirm-button/>

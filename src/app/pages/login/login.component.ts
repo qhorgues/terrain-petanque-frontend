@@ -4,11 +4,12 @@ import { PasswordFieldComponent } from "../../components/password-field/password
 import { ConfirmButtonComponent } from "../../components/confirm-button/confirm-button.component";
 import { UserInputInterface } from '../../interfaces/input/userInputInterface';
 import { UserService } from '../../services/userService/user.service';
+import { FormsModule  } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ EmailFieldComponent, PasswordFieldComponent, ConfirmButtonComponent],
+  imports: [ EmailFieldComponent, PasswordFieldComponent, ConfirmButtonComponent, FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
