@@ -1,11 +1,15 @@
-.NotFound {
-  font-size: 10vw;
+div {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  height: 100%;
+  align-items: center;
+  gap: 50px;
 }
 
-.example-card {
-  max-width: 400px;
+h1  {
+  font-size: 6em;
 }
+
+p {
+  color: var(--secondary-color);
+ }
