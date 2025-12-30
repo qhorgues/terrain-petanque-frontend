@@ -9,8 +9,15 @@
 
   <app-navigation class="desktopnav"/>
 
-  <button mat-icon-button routerLink="/login" class="profile">
-    <mat-icon>account_circle</mat-icon>
-  </button>
+  @if(!isConnect) {
+    <button mat-icon-button routerLink="/login" class="endbutton">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  }
+  @else {
+    <button mat-icon-button (click)="logout()" class="endbutton">
+      <mat-icon>logout</mat-icon>
+    </button>
+  }
 
 </mat-toolbar>
