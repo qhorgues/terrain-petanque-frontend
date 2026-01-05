@@ -1,42 +1,35 @@
-import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
-import {MatSelectModule} from '@angular/material/select';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field'
-import {MatIconModule} from '@angular/material/icon';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {merge} from 'rxjs';
+import { Component } from '@angular/core';
 import { EmailFieldComponent } from "../../components/email-field/email-field.component";
 import { PasswordFieldComponent } from "../../components/password-field/password-field.component";
 import { ConfirmButtonComponent } from "../../components/confirm-button/confirm-button.component";
+import { UserInputInterface } from '../../interfaces/input/userInputInterface';
+import { UserService } from '../../services/userService/user.service';
+import { FormsModule  } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatFormFieldModule, MatButtonModule, MatSelectModule, MatIconModule, MatInputModule, FormsModule, ReactiveFormsModule, EmailFieldComponent, PasswordFieldComponent, ConfirmButtonComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ EmailFieldComponent, PasswordFieldComponent, ConfirmButtonComponent, FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  readonly email = new FormControl('', [Validators.required, Validators.email]);
+  credential: UserInputInterface = {name: "", surname : "", mail : "", password : "", username : ""};
 
-  errorMessage = signal('');
+  constructor(private userService : UserService) {}
 
-  constructor() {
-    merge(this.email.statusChanges, this.email.valueChanges)
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => this.updateErrorMessage());
+  updateMail(email : string | null) {
+    if (email == null) return;
+    this.credential.mail = email;
   }
 
-  updateErrorMessage() {
-    if (this.email.hasError('required')) {
-      this.errorMessage.set('You must enter a value');
-    } else if (this.email.hasError('email')) {
-      this.errorMessage.set('Not a valid email');
-    } else {
-      this.errorMessage.set('');
-    }
+  updatePassword(password : string | null) {
+    if (password == null) return;
+    this.credential.password = password;
   }
+
+  onSubmit() {
+    this.userService.login(this.credential);
+  }
+
 }

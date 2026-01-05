@@ -1,3 +1,6 @@
 .confirm-button{
     border-radius: 25px;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    box-shadow: none;
 }

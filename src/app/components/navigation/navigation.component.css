@@ -1,0 +1,31 @@
+nav a {
+  color: var(--primary-color);
+}
+
+a:hover, button:hover {
+  background-color: color-mix(in oklab, var(--secondary-color) 10%, #0000);
+}
+
+nav {
+  margin-left: 25px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+nav a {
+  margin-right: 25px;
+  margin-left: 25px;
+}
+
+@media (max-width:800px) {
+  nav {
+    margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    gap: 25px;
+  }
+}

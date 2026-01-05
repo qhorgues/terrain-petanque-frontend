@@ -1,7 +1,8 @@
+<h1>Connection</h1>
 <div>
-    <form>
-        <app-email-field></app-email-field>
-        <app-password-field></app-password-field>
-        <app-confirm-button></app-confirm-button>
+    <form (ngSubmit)="onSubmit()">
+        <app-email-field (email)="updateMail($event)"/>
+        <app-password-field (password)="updatePassword($event)"/>
+        <app-confirm-button/>
     </form>
 </div>

@@ -1,44 +1,45 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, OnInit, input } from "@angular/core";
 import { RouterLink } from "@angular/router";
-import { MatSidenav } from "@angular/material/sidenav";
+import { MatDrawer, MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { BreakpointObserver } from "@angular/cdk/layout";
+import { NavigationComponent } from "../navigation/navigation.component";
+import { AuthService } from "../../services/auth/auth.service";
 
 @Component({
   selector: "app-menu",
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, MatToolbarModule, RouterLink],
+  imports: [MatIconModule, MatButtonModule, MatToolbarModule, RouterLink, MatSidenavModule, NavigationComponent],
   templateUrl: "./menu.component.html",
   styleUrl: "./menu.component.css",
 })
-export class MenuComponent {
-  @ViewChild("sidenav") sidenav!: MatSidenav;
+export class MenuComponent implements OnInit{
+  drawer = input<MatDrawer>();
+
+  isConnect: boolean = false;
+
+  constructor(private authService : AuthService) {}
+
+  ngOnInit(): void {
+    this.isConnect = this.authService.isLoggedIn();
+  }
+
+  logout(): void {
+    this.authService.logout();
+    window.location.reload();
+  }
 
   toggleSidenav() {
-    this.sidenav.toggle();
+    this.drawer()?.toggle();
   }
 
   closeSidenav() {
-    this.sidenav.close();
+    this.drawer()?.close();
   }
 
   openSidenav() {
-    this.sidenav.open();
+    this.drawer()?.open();
   }
 
-  constructor(private breakpointObserver: BreakpointObserver) {
-    this.breakpointObserver
-      .observe(["(max-width: 768px)"])
-      .subscribe((result) => {
-        if (result.matches) {
-          this.sidenav.mode = "over";
-          this.sidenav.close();
-        } else {
-          this.sidenav.mode = "side";
-          this.sidenav.open();
-        }
-      });
-  }
 }

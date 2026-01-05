@@ -1,34 +1,23 @@
-<mat-toolbar color="secondary">
-  <!-- Menu hamburger (visible uniquement sur mobile) -->
-  <button mat-icon-button (click)="toggleSidenav()" color="primary" class="menu-button">
+<mat-toolbar>
+  <!-- HAMBURGER MENU -->
+  <button mat-icon-button class="menu-button" (click)="toggleSidenav()">
     <mat-icon>menu</mat-icon>
   </button>
 
-  <!-- Logo/Titre -->
-  <a routerLink="/" class="app-title-link">
-    Terrain petanque
-  </a>
 
-  <!-- Menu desktop (visible uniquement sur grand écran) -->
-  <nav class="desktop-menu">
-    <a mat-button routerLink="/terrains" routerLinkActive="active" color="primary">
-      <mat-icon>sports</mat-icon>
-      Terrains
-    </a>
-    <a mat-button routerLink="/reservations" routerLinkActive="active" color="primary">
-      <mat-icon>event</mat-icon>
-      Réservations
-    </a>
-    <a mat-button routerLink="/users" routerLinkActive="active" color="primary">
-      <mat-icon>supervisor_account</mat-icon>
-      Liste des utilisateurs
-    </a>
-  </nav>
+  <a mat-button routerLink="/"><h1>Terrain Petanque</h1></a>
 
-  <span class="spacer"></span>
+  <app-navigation class="desktopnav"/>
 
-  <!-- Bouton compte (toujours visible) -->
-  <button mat-icon-button routerLink="/login" color="primary">
-    <mat-icon>account_circle</mat-icon>
-  </button>
+  @if(!isConnect) {
+    <button mat-icon-button routerLink="/login" class="endbutton">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  }
+  @else {
+    <button mat-icon-button (click)="logout()" class="endbutton">
+      <mat-icon>logout</mat-icon>
+    </button>
+  }
+
 </mat-toolbar>

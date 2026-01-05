@@ -1,8 +1,9 @@
-.email-container mat-form-field + mat-form-field {
-  margin-left: 8px;
-  width: 100%;
+mat-form-field {
+  width: 15vw;
 }
 
-.email-field {
-  width: 100%;
+@media (max-width:800px) {
+  mat-form-field {
+    width: 75vw;
+  }
 }

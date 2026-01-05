@@ -1,15 +1,13 @@
-<div class="email-container">
-    <mat-form-field appearance="outline" class="email-field">
-        <mat-label>Enter your email</mat-label>
-        <input
-          matInput
-          placeholder="pat@example.com"
-          [formControl]="email"
-          (blur)="updateErrorMessage()"
-          required
-        />
-        @if (email.invalid) {
-          <mat-error>{{errorMessage()}}</mat-error>
-        }
-    </mat-form-field>
-</div>
+<mat-form-field appearance="outline">
+  <mat-label>Enter your email</mat-label>
+  <input
+    matInput
+    placeholder="pat@example.com"
+    [formControl]="form"
+    (blur)="updateMail()"
+    required
+  />
+  @if (form.invalid) {
+    <mat-error>{{errorMessage()}}</mat-error>
+  }
+</mat-form-field>
