@@ -1,20 +1,24 @@
+<!-- The up bar -->
 <mat-toolbar>
-  <!-- HAMBURGER MENU -->
+  <!-- Button to open the hamburger menu -->
   <button mat-icon-button class="menu-button" (click)="toggleSidenav()">
     <mat-icon>menu</mat-icon>
   </button>
 
-
+  <!-- The title of the app -->
   <a mat-button routerLink="/"><h1>Terrain Petanque</h1></a>
 
+  <!-- The navigation buttons box -->
   <app-navigation class="desktopnav"/>
 
   @if(!isConnect) {
+    <!-- Connection button -->
     <button mat-icon-button routerLink="/login" class="endbutton">
       <mat-icon>account_circle</mat-icon>
     </button>
   }
   @else {
+    <!-- Disconnection button -->
     <button mat-icon-button (click)="logout()" class="endbutton">
       <mat-icon>logout</mat-icon>
     </button>

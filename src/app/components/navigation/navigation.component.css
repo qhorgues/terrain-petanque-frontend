@@ -1,11 +1,20 @@
+/**
+ * Basic CSS to the hyperlink.
+ */
 nav a {
   color: var(--primary-color);
 }
 
+/**
+ * Basic CSS when hover the hyperlink.
+ */
 a:hover, button:hover {
   background-color: color-mix(in oklab, var(--secondary-color) 10%, #0000);
 }
 
+/**
+ * Basic CSS in the navigation bar.
+ */
 nav {
   margin-left: 25px;
   display: flex;
@@ -13,11 +22,19 @@ nav {
   align-items: center;
 }
 
+/**
+ * Basic CSS to the hyperlink.
+ */
 nav a {
   margin-right: 25px;
   margin-left: 25px;
 }
 
+
+
+/**
+ * Basic CSS of the navigation bar in mobile mode.
+ */
 @media (max-width:800px) {
   nav {
     margin-right: 25px;

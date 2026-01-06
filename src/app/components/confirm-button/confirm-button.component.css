@@ -1,3 +1,6 @@
+/**
+ * The basic CSS of the button.
+ */
 .confirm-button{
     border-radius: 25px;
     background-color: var(--primary-color);
