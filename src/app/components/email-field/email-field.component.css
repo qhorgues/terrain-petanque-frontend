@@ -1,8 +1,14 @@
+/**
+ * Basic CSS for the field.
+ */
 mat-form-field {
   width: 15vw;
 }
 
-@media (max-width:800px) {
+/**
+ * Basic CSS for the field in mobile mode.
+ */
+@media (max-width: 120vh) {
   mat-form-field {
     width: 75vw;
   }

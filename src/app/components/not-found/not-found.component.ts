@@ -2,6 +2,9 @@ import { Component } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 
+/**
+ * This class represent a component of the 404.
+ */
 @Component({
   selector: "app-not-found",
   standalone: true,

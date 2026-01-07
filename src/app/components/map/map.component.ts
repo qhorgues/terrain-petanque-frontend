@@ -4,6 +4,15 @@ import * as L from "leaflet";
 import { CourtService } from "../../services/courtService/court.service";
 import { CourtOutputInterface } from "../../interfaces/output/courtOutputInterface";
 
+let DefaultIcon = L.icon({
+  iconUrl: `https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png`,
+  shadowUrl: `https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png`,
+  iconSize: [24, 36],
+  iconAnchor: [12, 36],
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
+
 @Component({
   selector: "app-map",
   standalone: true,
@@ -72,7 +81,9 @@ export class MapComponent implements AfterViewInit, OnDestroy {
       ) {
         L.marker([lat, lng])
           .addTo(this.map!)
-          .bindPopup(`<b>${court.name}</b><br>Quantité: ${court.quantity}`);
+          .bindPopup(
+            `<b>${court.name}</b><br>Nombres de terrains: ${court.quantity}`,
+          );
       } else {
         console.warn(
           `Coordonnées invalides pour ${court.name}: lat=${lat}, lng=${lng}`,

@@ -1,23 +1,21 @@
+<!-- The navigation bar -->
 <nav>
-  @if (isConnect) {
-    <a mat-button routerLink="/terrains">
-      <mat-icon>sports</mat-icon> Terrains
-    </a>
+  <!-- Button direction the courts -->
+  <a mat-button routerLink="/terrains">
+    <mat-icon>list</mat-icon> Terrains
+  </a>
 
-    <a mat-button routerLink="/reservations">
-      <mat-icon>event</mat-icon> Réservations
-    </a>
-    <a mat-button routerLink="/users">
-      <mat-icon>supervisor_account</mat-icon> Liste des utilisateurs
-    </a>
-  }
-  @else {
-    <a mat-button routerLink="/login">
-      <mat-icon>account_box</mat-icon> Log in
-    </a>
+  <!-- Button direction the reservation -->
+  <a mat-button routerLink="/reservations">
+    <mat-icon>event</mat-icon> Réservations
+  </a>
 
-    <a mat-button routerLink="/signin">
-      <mat-icon>assignment_ind</mat-icon> Sign in
-    </a>
-  }
+  <!-- Button direction the user. -->
+  <a mat-button routerLink="/users">
+    <mat-icon>supervisor_account</mat-icon> Liste des utilisateurs
+  </a>
+
+  <a mat-button routerLink="/map">
+    <mat-icon>map</mat-icon> Carte des terrains
+  </a>
 </nav>

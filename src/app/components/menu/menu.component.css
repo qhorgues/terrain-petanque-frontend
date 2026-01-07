@@ -1,51 +1,69 @@
+/**
+ * Basic CSS to the up bar.
+ */
 mat-toolbar {
   position: relative;
   background-color: var(--background-color);
   color: var(--primary-color);
-  box-shadow: 0 0 0 var(--secondary-background-color),
-              0px 5px 5px var(--secondary-background-color);
+  box-shadow:
+    0 0 0 var(--secondary-background-color),
+    0px 5px 5px var(--secondary-background-color);
   z-index: 2;
 }
 
-mat-drawer-container {
-  background-color: var(--background-color);
-  color: var(--primary-color);
-}
-
+/**
+ * Disable the hamburger button by default.
+ */
 .menu-button {
   display: none;
 }
 
+/**
+ * Basic CSS for hyperlink balise.
+ */
 mat-toolbar a {
   color: var(--primary-color);
   text-decoration: none;
 }
 
-a:hover, button:hover {
+/**
+ * Basic CSS when hover a hyperlink balise.
+ */
+a:hover,
+button:hover {
   background-color: color-mix(in oklab, var(--secondary-color) 10%, #0000);
 }
 
+/**
+ * Change the size of the navigation buttons box.
+ */
 app-navigation {
   width: 50%;
 }
 
+/**
+ * Put the 'end button' to the right of the screen.
+ */
 .endbutton {
   position: absolute;
   right: 15px;
 }
 
-@media (max-width:800px) {
+/**
+ * In mobile mode :
+ */
+@media (max-width: 120vh) {
+  /**
+   * Show the hamburger button.
+   */
   .menu-button {
     display: block;
   }
 
+  /**
+   * Avoid the navigation buttons box in the up bar.
+   */
   .desktopnav {
     display: none;
-  }
-
-  mat-drawer {
-    position: absolute;
-    height: 100vh;
-    z-index: 10000;
   }
 }

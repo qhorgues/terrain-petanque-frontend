@@ -1,5 +1,9 @@
+<!-- The field box -->
 <mat-form-field appearance="outline">
-  <mat-label>Enter your email</mat-label>
+  <!-- The field label -->
+  <mat-label>Entrée votre email</mat-label>
+
+  <!-- The type of the button. Email mode -->
   <input
     matInput
     placeholder="pat@example.com"
@@ -7,6 +11,8 @@
     (blur)="updateMail()"
     required
   />
+
+  <!-- If the email is invalid, show an error message -->
   @if (form.invalid) {
     <mat-error>{{errorMessage()}}</mat-error>
   }

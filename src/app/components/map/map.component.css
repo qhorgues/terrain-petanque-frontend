@@ -1,6 +1,6 @@
 .map-wrapper {
   width: 100%;
-  height: 600px;
+  height: 100%;
   margin: 20px 0;
 }
 
@@ -10,6 +10,7 @@
 }
 
 /* Fix pour les tuiles Leaflet */
+/*
 :host ::ng-deep .leaflet-container {
   height: 100%;
   width: 100%;
@@ -24,3 +25,4 @@
   width: 256px !important;
   height: 256px !important;
 }
+*/
