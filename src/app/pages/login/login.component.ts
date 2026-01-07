@@ -7,6 +7,9 @@ import { UserService } from '../../services/userService/user.service';
 import { FormsModule  } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 
+/**
+ * This class represent the login page.
+ */
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -15,9 +18,29 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
+  /**
+   * This attribute represents the credential.
+   */
   credential: UserInputInterface = {name: "", surname : "", mail : "", password : "", username : ""};
 
+
+
+  /**
+   * This attribute represents when the credential are wrong.
+   */
+  isValid: boolean = true
+
+
+
+  /**
+   * The constructor.
+   *
+   * @param userService The user's service.
+   * @param authService The authentification service.
+   */
   constructor(private userService : UserService, private authService : AuthService) {}
+
+
 
   /**
    * This method force the connected user to unacces to this page (and return to the home page when is connected).
@@ -30,18 +53,37 @@ export class LoginComponent implements OnInit {
     }, 500);
   }
 
-  updateMail(email : string | null) {
+
+
+  /**
+   * This method update the mail field.
+   *
+   * @param email The new mail.=
+   */
+  updateMail(email : string | null) : void {
     if (email == null) return;
     this.credential.mail = email;
   }
 
-  updatePassword(password : string | null) {
+
+
+  /**
+   * This method updates the password field.
+   *
+   * @param password The new password
+   */
+  updatePassword(password : string | null) : void {
     if (password == null) return;
     this.credential.password = password;
   }
 
-  onSubmit() {
-    this.userService.login(this.credential);
+
+
+  /**
+   * This method send the credential.
+   */
+  onSubmit() :void {
+    this.userService.login(this.credential, result => this.isValid = result);
   }
 
 }

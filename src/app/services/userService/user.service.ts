@@ -107,9 +107,19 @@ export class UserService {
     * This method logs in a user.
     *
     * @param user The user's credential.
+    * @param callback The function to handle the return, the return is a boolean.
+    * @return Return true if the credential are success, false otherwise.
     */
-  login(user : UserInputInterface) : void {
-    this.http.post<any>(this.apiURL + "/login", user).subscribe(response => this.authService.saveToken(response.token));
-  }
+  login(user: UserInputInterface, callback: (success: boolean) => void): void {
+  this.http.post<any>(this.apiURL + "/login", user).subscribe({
+    next: response => {
+      this.authService.saveToken(response.token);
+      callback(true);
+    },
+    error: error => {
+      callback(false);
+    }
+  });
+}
 
 }
