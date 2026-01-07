@@ -14,27 +14,4 @@ import { AuthService } from '../../services/auth/auth.service';
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.css'
 })
-export class NavigationComponent implements OnInit {
-  /**
-   * This attribute represents if the user is connected.
-   */
-  isConnect: boolean = false;
-
-
-
-  /**
-   * The constructor.
-   * 
-   * @param authService The service of authentification. 
-   */
-  constructor(private authService : AuthService) {}
-
-
-
-  /**
-   * The method initialize the component.
-   */
-  ngOnInit(): void {
-    this.isConnect = this.authService.isLoggedIn();
-  }
-}
+export class NavigationComponent {}
