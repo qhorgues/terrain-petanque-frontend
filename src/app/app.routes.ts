@@ -1,6 +1,7 @@
 import { Routes } from "@angular/router";
-import { NotFoundComponent } from "./components/not-found/not-found.component";
+import { NotFoundPageComponent } from "./pages/not-found-page/not-found-page.component";
 import { LoginComponent } from "./pages/login/login.component";
+import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { authGuard } from "./services/auth/auth.guard";
 
 /**
@@ -28,15 +29,18 @@ export const routes: Routes = [
    */
   {
     path: '',
+    component: HomePageComponent,
     canActivate: [authGuard],
     children: [
-      /**
-       * If the URL is unknown.
-       */
-      {
-        path: "**",
-        component: NotFoundComponent
-      }
+
     ]
+  },
+
+  /**
+   * If the URL is unknown.
+   */
+  {
+    path: "**",
+    component: NotFoundPageComponent
   }
 ];

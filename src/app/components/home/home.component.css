@@ -1,0 +1,24 @@
+/**
+ * Basic CSS of the 404 box
+ */
+div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+/**
+ * Basic CSS for the title
+ */
+h1  {
+  font-size: 6em;
+}
+
+/**
+ * Basic CSS for the message.
+ */
+p {
+  color: var(--secondary-color);
+ }
