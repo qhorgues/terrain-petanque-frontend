@@ -5,8 +5,9 @@ mat-toolbar {
   position: relative;
   background-color: var(--background-color);
   color: var(--primary-color);
-  box-shadow: 0 0 0 var(--secondary-background-color),
-              0px 5px 5px var(--secondary-background-color);
+  box-shadow:
+    0 0 0 var(--secondary-background-color),
+    0px 5px 5px var(--secondary-background-color);
   z-index: 2;
 }
 
@@ -28,7 +29,8 @@ mat-toolbar a {
 /**
  * Basic CSS when hover a hyperlink balise.
  */
-a:hover, button:hover {
+a:hover,
+button:hover {
   background-color: color-mix(in oklab, var(--secondary-color) 10%, #0000);
 }
 
@@ -47,12 +49,10 @@ app-navigation {
   right: 15px;
 }
 
-
-
 /**
  * In mobile mode :
  */
-@media (max-width:800px) {
+@media (max-width: 120vh) {
   /**
    * Show the hamburger button.
    */

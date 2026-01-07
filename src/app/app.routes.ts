@@ -1,8 +1,9 @@
 import { Routes } from "@angular/router";
 import { NotFoundPageComponent } from "./pages/not-found-page/not-found-page.component";
 import { LoginComponent } from "./pages/login/login.component";
-import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { authGuard } from "./services/auth/auth.guard";
+import { HomePageComponent } from "./pages/home-page/home-page.component";
+import { MapPage } from "./pages/map/map.page";
 
 /**
  * This constant defines the routes.
@@ -12,28 +13,31 @@ export const routes: Routes = [
    * The login page.
    */
   {
-    path: 'login',
-    component: LoginComponent
+    path: "login",
+    component: LoginComponent,
   },
 
   /**
    * The login page.
    */
   {
-    path: 'signin',
-    component: LoginComponent
+    path: "signin",
+    component: LoginComponent,
   },
+
+  /**
+   * The map page.
+   */
+  { path: "map", component: MapPage },
 
   /**
    * The main routes of the website.
    */
   {
-    path: '',
+    path: "",
     component: HomePageComponent,
     canActivate: [authGuard],
-    children: [
-
-    ]
+    children: [],
   },
 
   /**
@@ -42,6 +46,6 @@ export const routes: Routes = [
   {
     path: "**",
     component: NotFoundPageComponent,
-    canActivate: [authGuard]
-  }
+    canActivate: [authGuard],
+  },
 ];

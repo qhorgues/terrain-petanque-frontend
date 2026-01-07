@@ -7,6 +7,7 @@ div {
   justify-content: center;
   align-items: center;
   gap: 50px;
+  margin-top: 200px;
 }
 
 /**
@@ -21,4 +22,4 @@ h1  {
  */
 p {
   color: var(--secondary-color);
- }
+}

@@ -8,7 +8,8 @@ nav a {
 /**
  * Basic CSS when hover the hyperlink.
  */
-a:hover, button:hover {
+a:hover,
+button:hover {
   background-color: color-mix(in oklab, var(--secondary-color) 10%, #0000);
 }
 
@@ -30,12 +31,10 @@ nav a {
   margin-left: 25px;
 }
 
-
-
 /**
  * Basic CSS of the navigation bar in mobile mode.
  */
-@media (max-width:800px) {
+@media (max-width: 120vh) {
   nav {
     margin-right: 25px;
     display: flex;
