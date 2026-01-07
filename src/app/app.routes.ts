@@ -1,12 +1,42 @@
 import { Routes } from "@angular/router";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { LoginComponent } from "./pages/login/login.component";
+import { authGuard } from "./services/auth/auth.guard";
 
+/**
+ * This constant defines the routes.
+ */
 export const routes: Routes = [
-  // { path: "", component: HomeComponent },
-  // { path: "users/new", component: NewUserComponent },
-  // { path: "users/:id", component: UserDetailComponent },
-  // { path: "users", component: UsersComponent },
-  { path: "login", component: LoginComponent },
-  { path: "**", component: NotFoundComponent },
+  /**
+   * The login page.
+   */
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+
+  /**
+   * The login page.
+   */
+  {
+    path: 'signin',
+    component: LoginComponent
+  },
+
+  /**
+   * The main routes of the website.
+   */
+  {
+    path: '',
+    canActivate: [authGuard],
+    children: [
+      /**
+       * If the URL is unknown.
+       */
+      {
+        path: "**",
+        component: NotFoundComponent
+      }
+    ]
+  }
 ];
