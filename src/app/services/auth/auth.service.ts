@@ -34,10 +34,18 @@ export class AuthService {
    * @returns Return the token. Null if the token is not in the storage.
    */
   getToken(): JWTInterface | null {
-    const result = sessionStorage.getItem(this.tokenId);
-    if (result === null) return null;
+    const token = sessionStorage.getItem(this.tokenId);
+    if (token === null) return null;
 
-    return jwtDecode<JWTInterface>(result);
+    const result = jwtDecode<JWTInterface>(token);
+
+    // If the token is expired, disable the user connection.
+    if (Date.now() > result.exp * 1000) { //The expiration is not in millisecond.
+      this.logout();
+      return null;
+    }
+
+    return result;
   }
 
 
@@ -47,6 +55,7 @@ export class AuthService {
    */
   logout(): void {
     sessionStorage.removeItem(this.tokenId);
+    window.location.href = "/login"; //Force disconnection, it's used to remove the up bar.
   }
 
 
