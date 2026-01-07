@@ -53,9 +53,9 @@ export class EmailFieldComponent {
    */
   updateMail() {
     if (this.form.hasError('required')) {
-      this.errorMessage.set('You must enter a value');
+      this.errorMessage.set('Vous devez entrez une valeur');
     } else if (this.form.hasError('email')) {
-      this.errorMessage.set('Not a valid email');
+      this.errorMessage.set("Ce n'est pas un email valide");
     } else {
       this.errorMessage.set('');
     }
