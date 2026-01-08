@@ -1,0 +1,61 @@
+<h2 mat-dialog-title>{{ data.mode === 'add' ? 'Ajouter' : 'Modifier' }} un terrain</h2>
+<mat-dialog-content>
+  <form [formGroup]="courtForm">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="name" required>
+      @if(courtForm.get('name')?.hasError('required')) {
+        <mat-error>
+          Le nom est obligatoire
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Quantité</mat-label>
+      <input matInput type="number" formControlName="quantity" required>
+
+      @if(courtForm.get('quantity')?.hasError('required')) {
+        <mat-error>
+          La quantité est obligatoire
+        </mat-error>
+      }
+      @if(courtForm.get('quantity')?.hasError('min')) {
+        <mat-error>
+          La quantité doit être positive
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" rows="3"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Latitude</mat-label>
+      <input matInput type="number" step="0.0000000001" formControlName="latitude" required>
+      @if(courtForm.get('latitude')?.hasError('required')) {
+        <mat-error>
+          La latitude est obligatoire
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Longitude</mat-label>
+      <input matInput type="number" step="0.0000000001" formControlName="longitude" required>
+      @if(courtForm.get('longitude')?.hasError('required')) {
+        <mat-error>
+          La longitude est obligatoire
+        </mat-error>
+      }
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button mat-raised-button color="primary" (click)="save()" [disabled]="!courtForm.valid">
+    {{ data.mode === 'add' ? 'Ajouter' : 'Modifier' }}
+  </button>
+</mat-dialog-actions>

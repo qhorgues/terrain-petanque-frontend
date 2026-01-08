@@ -5,21 +5,28 @@
         <mat-label>Nom du terrain</mat-label>
         <input matInput formControlName="name" placeholder="Ex: Parc des sports">
         <mat-icon matPrefix>sports_tennis</mat-icon>
-        <mat-error *ngIf="courtForm.get('name')?.hasError('required')">
-          Le nom est obligatoire
-        </mat-error>
+        @if(courtForm.get('name')?.hasError('required')) {
+          <mat-error>
+            Le nom est obligatoire
+          </mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Quantité</mat-label>
         <input matInput type="number" formControlName="quantity" placeholder="1">
         <mat-icon matPrefix>grid_view</mat-icon>
-        <mat-error *ngIf="courtForm.get('quantity')?.hasError('required')">
-          La quantité est obligatoire
-        </mat-error>
-        <mat-error *ngIf="courtForm.get('quantity')?.hasError('min')">
-          La quantité doit être au moins 1
-        </mat-error>
+
+        @if(courtForm.get('quantity')?.hasError('required')) {
+          <mat-error>
+            La quantité est obligatoire
+          </mat-error>
+        }
+        @if(courtForm.get('quantity')?.hasError('min')) {
+          <mat-error>
+            La quantité doit être au moins 1
+          </mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
@@ -38,68 +45,80 @@
           <mat-label>Latitude</mat-label>
           <input matInput formControlName="latitude" placeholder="47.3391800013">
           <mat-icon matPrefix>place</mat-icon>
-          <mat-error *ngIf="courtForm.get('latitude')?.hasError('required')">
-            La latitude est obligatoire
-          </mat-error>
+
+          @if(courtForm.get('latitude')?.hasError('required')) {
+            <mat-error>
+              La latitude est obligatoire
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="half-width">
           <mat-label>Longitude</mat-label>
           <input matInput formControlName="longitude" placeholder="0.7174200006">
           <mat-icon matPrefix>place</mat-icon>
-          <mat-error *ngIf="courtForm.get('longitude')?.hasError('required')">
-            La longitude est obligatoire
-          </mat-error>
+          @if(courtForm.get('longitude')?.hasError('required')) {
+            <mat-error>
+              La longitude est obligatoire
+            </mat-error>
+          }
         </mat-form-field>
       </div>
     </div>
 
-    <div class="actions" *ngIf="!loading">
-      <div class="left-actions">
-        <button
-          *ngIf="mode !== 'create' && court"
-          mat-raised-button
-          color="warn"
-          type="button"
-          (click)="onDelete()">
-          <mat-icon>delete</mat-icon>
-          Supprimer
-        </button>
+    @if(!loading) {
+      <div class="actions">
+        <div class="left-actions">
+          @if(mode !== 'create' && court) {
+            <button
+              mat-raised-button
+              color="warn"
+              type="button"
+              (click)="onDelete()">
+              <mat-icon>delete</mat-icon>
+              Supprimer
+            </button>
+          }
+        </div>
+
+        <div class="right-actions">
+          @if(mode !== 'create' && !isEditMode) {
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              (click)="toggleEditMode()">
+              <mat-icon>edit</mat-icon>
+              Modifier
+            </button>
+          }
+
+          @if(isEditMode && mode !== 'create') {
+            <button
+              mat-button
+              class="cancel-button"
+              type="button"
+              (click)="toggleEditMode()">
+              Annuler
+            </button>
+          }
+
+          @if(isEditMode || mode === 'create') {
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="courtForm.invalid">
+              <mat-icon>{{ mode === 'create' ? 'add' : 'save' }}</mat-icon>
+              {{ mode === 'create' ? 'Créer' : 'Enregistrer' }}
+            </button>
+          }
+        </div>
       </div>
-
-      <div class="right-actions">
-        <button
-          *ngIf="mode !== 'create' && !isEditMode"
-          mat-raised-button
-          color="primary"
-          type="button"
-          (click)="toggleEditMode()">
-          <mat-icon>edit</mat-icon>
-          Modifier
-        </button>
-
-        <button
-          *ngIf="isEditMode && mode !== 'create'"
-          mat-button
-          type="button"
-          (click)="toggleEditMode()">
-          Annuler
-        </button>
-
-        <button
-          *ngIf="isEditMode || mode === 'create'"
-          mat-raised-button
-          color="primary"
-          type="submit"
-          [disabled]="courtForm.invalid">
-          <mat-icon>{{ mode === 'create' ? 'add' : 'save' }}</mat-icon>
-          {{ mode === 'create' ? 'Créer' : 'Enregistrer' }}
-        </button>
+    } @else {
+      <div class="loading-overlay">
+        <mat-spinner diameter="40"></mat-spinner>
       </div>
-    </div>
-
-    <div class="loading-overlay" *ngIf="loading">
-      <mat-spinner diameter="40"></mat-spinner>
-    </div>
+    }
   </form>
 </div>

@@ -5,8 +5,15 @@
         <mat-icon class="icon">sports_tennis</mat-icon>
         <div class="details">
           <h3>{{ court.name }}</h3>
-          <p class="description" *ngIf="court.description">{{ court.description }}</p>
-          <p class="description" *ngIf="!court.description"><em>Aucune description</em></p>
+          @if(court.description) {
+            <p class="description">
+              {{ court.description }}
+            </p>
+          } @else {
+            <p class="description">
+              <em>Aucune description</em>
+            </p>
+          }
         </div>
       </div>
       <div class="meta-info">

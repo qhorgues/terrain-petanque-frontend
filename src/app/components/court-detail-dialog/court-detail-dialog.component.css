@@ -11,6 +11,10 @@
   color: var(--primary-color);
 }
 
+.dialog-box {
+  background-color: var(--background-color);
+}
+
 ::ng-deep .mat-mdc-dialog-content {
   padding: 0 !important;
   margin: 0 !important;

@@ -7,34 +7,42 @@
     </button>
   </div>
 
-  <div class="content" *ngIf="!loading && !error">
-    <div class="list" *ngIf="courts.length > 0; else noData">
-      <app-court-list-item
-        *ngFor="let court of courts"
-        [court]="court"
-        (click)="openCourtDetail(court)">
-      </app-court-list-item>
+  @if(!loading && !error) {
+    <div class="content">
+      @if(courts.length > 0; else noData) {
+        <div class="list">
+          <app-court-list-item
+            *ngFor="let court of courts"
+            [court]="court"
+            (click)="openCourtDetail(court)">
+          </app-court-list-item>
+        </div>
+      }
+
+      <ng-template #noData>
+        <div class="no-data">
+          <mat-icon>sports_tennis</mat-icon>
+          <p>Aucun terrain de jeux disponible</p>
+          <button mat-raised-button color="primary" (click)="openAddCourt()">
+            Ajouter le premier terrain
+          </button>
+        </div>
+      </ng-template>
     </div>
+  }
 
-    <ng-template #noData>
-      <div class="no-data">
-        <mat-icon>sports_tennis</mat-icon>
-        <p>Aucun terrain de jeux disponible</p>
-        <button mat-raised-button color="primary" (click)="openAddCourt()">
-          Ajouter le premier terrain
-        </button>
-      </div>
-    </ng-template>
-  </div>
+  @if(loading)
+    <div class="loading">
+      <mat-spinner></mat-spinner>
+      <p>Chargement des terrains...</p>
+    </div>
+  }
 
-  <div class="loading" *ngIf="loading">
-    <mat-spinner></mat-spinner>
-    <p>Chargement des terrains...</p>
-  </div>
-
-  <div class="error" *ngIf="error">
-    <mat-icon>error</mat-icon>
-    <p>{{ error }}</p>
-    <button mat-raised-button (click)="loadCourts()">Réessayer</button>
-  </div>
+  @if(error) {
+    <div class="error">
+      <mat-icon>error</mat-icon>
+      <p>{{ error }}</p>
+      <button mat-raised-button (click)="loadCourts()">Réessayer</button>
+    </div>
+  }
 </div>
