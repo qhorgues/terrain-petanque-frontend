@@ -1,0 +1,37 @@
+<!-- The title -->
+<h1>Inscription</h1>
+
+<!-- The box of the form -->
+<div>
+    <!-- The form -->
+    <form (ngSubmit)="onSubmit()">
+        <!-- If the credential are invalid -->
+        @if(!isValid) {
+          <p>Un utilisateur existe avec vos données existe déjà.</p>
+        }
+
+        <!-- The name field -->
+        <app-text-field label="Nom" placeholder="Hurel" (value)="credential.name"/>
+
+        <!-- The surname field -->
+        <app-text-field label="Prenom" placeholder="Lisa" (value)="credential.surname"/>
+
+        <!-- The username field -->
+        <app-text-field label="Pseudo" placeholder="Lisa Hurel" (value)="credential.username"/>
+
+        <!-- The email field -->
+        <app-email-field (email)="updateMail($event)"/>
+
+        <!-- The email checker field -->
+        <app-email-field-checker [valid_email]="credential.mail" (email)="updateMail($event)"/>
+
+        <!-- The password field -->
+        <app-password-field (password)="updatePassword($event)"/>
+
+        <!-- The password checker field -->
+        <app-password-field-checker [valid_password]="credential.password" (password)="updatePassword($event)"/>
+
+        <!-- The button to send the credential -->
+        <app-confirm-button/>
+    </form>
+</div>

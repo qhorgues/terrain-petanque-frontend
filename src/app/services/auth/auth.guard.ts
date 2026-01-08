@@ -19,21 +19,28 @@ export const authGuard: CanActivateFn = (route, state) => {
   /**
    * This variable is the router service.
    */
-  const router = inject(Router);
+  const router = inject(Router)
 
   /**
-   * If the user is not connected, go them in the login page.
+   * This variable is if the user is connected.
    */
-  if (!authService.isLoggedIn()) {
+  const isLoggedIn = authService.isLoggedIn();
+
+
+
+  /**
+   * This variable is if the user want to go in the login or signin page.
+   */
+  const isAuthPage = state.url === '/login' || state.url === '/signin';
+
+
+
+  if (!isLoggedIn && !isAuthPage) {
     return router.createUrlTree(['/login']);
   }
-  /**
-   * If the user is connected, avoid him to go in login and sign in page.
-   */
-  else {
-    if (state.url === "/login" || state.url === "/signin") {
-      return router.createUrlTree(['/'])
-    }
+
+  if (isLoggedIn && isAuthPage) {
+    return router.createUrlTree(['/']);
   }
 
   return true;

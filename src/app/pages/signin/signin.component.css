@@ -1,0 +1,23 @@
+/**
+ * The basic CSS for the title.
+ */
+h1 {
+  text-align: center;
+}
+
+/**
+ * The basic CSS for the form
+ */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/**
+ * The basic CSS for the error message.
+ */
+p {
+  color: red;
+}

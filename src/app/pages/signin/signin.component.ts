@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailFieldComponent } from "../../components/email-field/email-field.component";
+import { EmailFieldCheckerComponent  } from '../../components/email-field-checker/email-field-checker.component';
 import { PasswordFieldComponent } from "../../components/password-field/password-field.component";
+import { PasswordFieldCheckerComponent  } from '../../components/password-field-checker/password-field-checker.component';
 import { ConfirmButtonComponent } from "../../components/confirm-button/confirm-button.component";
+import { TextFieldComponent } from '../../components/text-field/text-field.component';
 import { UserInputInterface } from '../../interfaces/input/userInputInterface';
 import { UserService } from '../../services/userService/user.service';
 import { FormsModule  } from '@angular/forms';
@@ -13,11 +16,11 @@ import { AuthService } from '../../services/auth/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ EmailFieldComponent, PasswordFieldComponent, ConfirmButtonComponent, FormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  imports: [ EmailFieldComponent, PasswordFieldComponent, ConfirmButtonComponent, TextFieldComponent, FormsModule, EmailFieldCheckerComponent, PasswordFieldCheckerComponent],
+  templateUrl: './signin.component.html',
+  styleUrl: './signin.component.css'
 })
-export class LoginComponent implements OnInit {
+export class SigninComponent implements OnInit {
   /**
    * This attribute represents the credential.
    */
@@ -48,7 +51,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() : void {
     setInterval(() => {
       if (this.authService.isLoggedIn()) {
-        window.location.href = "/"; //This force to reload all the website. So the user is now connected and the menu is the correct menu.
+        //window.location.href = "/"; //This force to reload all the website. So the user is now connected and the menu is the correct menu.
       }
     }, 100);
   }
@@ -83,6 +86,9 @@ export class LoginComponent implements OnInit {
    * This method send the credential.
    */
   onSubmit() :void {
+    this.userService.createUser(this.credential).subscribe({
+      error: (error) => this.isValid = false
+    })
     this.userService.login(this.credential, result => this.isValid = result);
   }
 

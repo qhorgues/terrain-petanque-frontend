@@ -1,6 +1,7 @@
 import { Routes } from "@angular/router";
 import { NotFoundPageComponent } from "./pages/not-found-page/not-found-page.component";
 import { LoginComponent } from "./pages/login/login.component";
+import { SigninComponent } from "./pages/signin/signin.component";
 import { authGuard } from "./services/auth/auth.guard";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { MapPage } from "./pages/map/map.page";
@@ -15,6 +16,7 @@ export const routes: Routes = [
   {
     path: "login",
     component: LoginComponent,
+    canActivate: [authGuard]
   },
 
   /**
@@ -22,13 +24,18 @@ export const routes: Routes = [
    */
   {
     path: "signin",
-    component: LoginComponent,
+    component: SigninComponent,
+    canActivate: [authGuard]
   },
 
   /**
    * The map page.
    */
-  { path: "map", component: MapPage },
+  {
+    path: "map",
+    component: MapPage,
+    canActivate: [authGuard]
+  },
 
   /**
    * The main routes of the website.
@@ -36,8 +43,7 @@ export const routes: Routes = [
   {
     path: "",
     component: HomePageComponent,
-    canActivate: [authGuard],
-    children: [],
+    canActivate: [authGuard]
   },
 
   /**
