@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs'
 import { UserInputInterface } from '../../interfaces/input/userInputInterface';
@@ -48,7 +48,7 @@ export class UserService {
     * @returns Return the user.
     */
   getUser(userId : number) : Observable<UserOutputInterface> {
-    return this.http.get<UserOutputInterface>(this.apiURL, {params: new HttpParams().set("id", userId)});
+    return this.http.get<UserOutputInterface>(this.apiURL + `/${userId}`);
   }
 
 
@@ -72,7 +72,7 @@ export class UserService {
     * @return Return nothing.
     */
   deleteUser(userId : number) : Observable<void> {
-    return this.http.delete<void>(this.apiURL, {params: new HttpParams().set("id", userId)});
+    return this.http.delete<void>(this.apiURL + `/${userId}`);
   }
 
 
@@ -85,7 +85,7 @@ export class UserService {
     * @return Return the user updated.
     */
   partialUpdateUser(user : UserInputInterface, userId : number) : Observable<UserOutputInterface> {
-    return this.http.patch<UserOutputInterface>(this.apiURL, user, {params: new HttpParams().set("id", userId)});
+    return this.http.patch<UserOutputInterface>(this.apiURL + `/${userId}`, user);
   }
 
 
@@ -98,7 +98,7 @@ export class UserService {
     * @return Return the user updated.
     */
   fullyUpdateUser(user : UserInputInterface, userId : number) : Observable<UserOutputInterface> {
-    return this.http.put<UserOutputInterface>(this.apiURL, user, {params: new HttpParams().set("id", userId)});
+    return this.http.put<UserOutputInterface>(this.apiURL + `/${userId}`, user);
   }
 
 
