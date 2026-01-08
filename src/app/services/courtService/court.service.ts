@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs'
 import { CourtInputInterface } from '../../interfaces/input/courtInputInterface';
@@ -46,7 +46,7 @@ export class CourtService {
     * @returns Return the court.
     */
   getCourt(courtId : number) : Observable<CourtOutputInterface> {
-    return this.http.get<CourtOutputInterface>(this.apiURL, {params: new HttpParams().set("id", courtId)});
+    return this.http.get<CourtOutputInterface>(this.apiURL + `/${courtId}`);
   }
 
 
@@ -70,7 +70,7 @@ export class CourtService {
     * @return Return nothing.
     */
   deleteCourt(courtId : number) : Observable<void> {
-    return this.http.delete<void>(this.apiURL, {params: new HttpParams().set("id", courtId)});
+    return this.http.delete<void>(this.apiURL + `/${courtId}`);
   }
 
 
@@ -83,7 +83,7 @@ export class CourtService {
     * @return Return the court updated.
     */
   partialUpdateCourt(court : CourtInputInterface, courtId : number) : Observable<CourtOutputInterface> {
-    return this.http.patch<CourtOutputInterface>(this.apiURL, court, {params: new HttpParams().set("id", courtId)});
+    return this.http.patch<CourtOutputInterface>(this.apiURL + `/${courtId}`, court);
   }
 
 
@@ -96,7 +96,7 @@ export class CourtService {
     * @return Return the court updated.
     */
   fullyUpdateCourt(court : CourtInputInterface, courtId : number) : Observable<CourtOutputInterface> {
-    return this.http.put<CourtOutputInterface>(this.apiURL, court, {params: new HttpParams().set("id", courtId)});
+    return this.http.put<CourtOutputInterface>(this.apiURL + `/${courtId}`, court);
   }
 
 }
