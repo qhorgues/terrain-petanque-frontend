@@ -4,6 +4,7 @@ import { LoginComponent } from "./pages/login/login.component";
 import { authGuard } from "./services/auth/auth.guard";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { MapPage } from "./pages/map/map.page";
+import { CourtPageComponent } from "./pages/court-page/court-page.component";
 
 /**
  * This constant defines the routes.
@@ -29,6 +30,8 @@ export const routes: Routes = [
    * The map page.
    */
   { path: "map", component: MapPage },
+
+  { path: "courts", component: CourtPageComponent },
 
   /**
    * The main routes of the website.

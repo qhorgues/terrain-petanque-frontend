@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="header">
+    <h1>Terrains de Sport</h1>
+    <button mat-raised-button color="primary" (click)="openAddDialog()">
+      <mat-icon>add</mat-icon>
+      Nouveau Terrain
+    </button>
+  </div>
+
+  <div class="content">
+    <div class="list-section">
+      <mat-card>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item
+              *ngFor="let court of courts"
+              (click)="selectCourt(court)"
+              [class.selected]="selectedCourt?.id === court.id">
+              <div class="list-item-content">
+                <div class="list-item-info">
+                  <h3>{{ court.name }}</h3>
+                  <p>Quantité: {{ court.quantity }}</p>
+                </div>
+                <mat-icon>chevron_right</mat-icon>
+              </div>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="details-section" *ngIf="selectedCourt">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class="card-title">{{ selectedCourt.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="detail-row">
+            <strong>ID:</strong> {{ selectedCourt.id }}
+          </div>
+          <div class="detail-row">
+            <strong>Quantité:</strong> {{ selectedCourt.quantity }}
+          </div>
+          <div class="detail-row">
+            <strong>Description:</strong> {{ selectedCourt.description || 'Non renseignée' }}
+          </div>
+          <div class="detail-row">
+            <strong>Latitude:</strong> {{ selectedCourt.coordinates.latitude }}
+          </div>
+          <div class="detail-row">
+            <strong>Longitude:</strong> {{ selectedCourt.coordinates.longitude }}
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="openEditDialog(selectedCourt)">
+            <mat-icon>edit</mat-icon>
+            Modifier
+          </button>
+          <button mat-raised-button color="warn" (click)="deleteCourt(selectedCourt.id)">
+            <mat-icon>delete</mat-icon>
+            Supprimer
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <div class="details-section empty-state" *ngIf="!selectedCourt">
+      <mat-card>
+        <mat-card-content>
+          <mat-icon>info</mat-icon>
+          <p>Sélectionnez un terrain pour voir les détails</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
