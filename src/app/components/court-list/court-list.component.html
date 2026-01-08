@@ -9,7 +9,7 @@
 
   @if(!loading && !error) {
     <div class="content">
-      @if(courts.length > 0; else noData) {
+      @if(courts.length > 0) {
         <div class="list">
           <app-court-list-item
             *ngFor="let court of courts"
@@ -31,7 +31,7 @@
     </div>
   }
 
-  @if(loading)
+  @if(loading) {
     <div class="loading">
       <mat-spinner></mat-spinner>
       <p>Chargement des terrains...</p>
