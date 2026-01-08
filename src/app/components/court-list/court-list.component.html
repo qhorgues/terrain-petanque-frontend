@@ -1,76 +1,40 @@
-<div class="container">
+<div class="court-list-container">
   <div class="header">
-    <h1>Terrains de Sport</h1>
-    <button mat-raised-button color="primary" (click)="openAddDialog()">
+    <h2>Terrains de jeux</h2>
+    <button mat-raised-button color="primary" (click)="openAddCourt()">
       <mat-icon>add</mat-icon>
-      Nouveau Terrain
+      Ajouter un terrain
     </button>
   </div>
 
-  <div class="content">
-    <div class="list-section">
-      <mat-card>
-        <mat-card-content>
-          <mat-list>
-            <mat-list-item
-              *ngFor="let court of courts"
-              (click)="selectCourt(court)"
-              [class.selected]="selectedCourt?.id === court.id">
-              <div class="list-item-content">
-                <div class="list-item-info">
-                  <h3>{{ court.name }}</h3>
-                  <p>Quantité: {{ court.quantity }}</p>
-                </div>
-                <mat-icon>chevron_right</mat-icon>
-              </div>
-            </mat-list-item>
-          </mat-list>
-        </mat-card-content>
-      </mat-card>
+  <div class="content" *ngIf="!loading && !error">
+    <div class="list" *ngIf="courts.length > 0; else noData">
+      <app-court-list-item
+        *ngFor="let court of courts"
+        [court]="court"
+        (click)="openCourtDetail(court)">
+      </app-court-list-item>
     </div>
 
-    <div class="details-section" *ngIf="selectedCourt">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title class="card-title">{{ selectedCourt.name }}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <div class="detail-row">
-            <strong>ID:</strong> {{ selectedCourt.id }}
-          </div>
-          <div class="detail-row">
-            <strong>Quantité:</strong> {{ selectedCourt.quantity }}
-          </div>
-          <div class="detail-row">
-            <strong>Description:</strong> {{ selectedCourt.description || 'Non renseignée' }}
-          </div>
-          <div class="detail-row">
-            <strong>Latitude:</strong> {{ selectedCourt.coordinates.latitude }}
-          </div>
-          <div class="detail-row">
-            <strong>Longitude:</strong> {{ selectedCourt.coordinates.longitude }}
-          </div>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="openEditDialog(selectedCourt)">
-            <mat-icon>edit</mat-icon>
-            Modifier
-          </button>
-          <button mat-raised-button color="warn" (click)="deleteCourt(selectedCourt.id)">
-            <mat-icon>delete</mat-icon>
-            Supprimer
-          </button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
+    <ng-template #noData>
+      <div class="no-data">
+        <mat-icon>sports_tennis</mat-icon>
+        <p>Aucun terrain de jeux disponible</p>
+        <button mat-raised-button color="primary" (click)="openAddCourt()">
+          Ajouter le premier terrain
+        </button>
+      </div>
+    </ng-template>
+  </div>
 
-    <div class="details-section empty-state" *ngIf="!selectedCourt">
-      <mat-card>
-        <mat-card-content>
-          <mat-icon>info</mat-icon>
-          <p>Sélectionnez un terrain pour voir les détails</p>
-        </mat-card-content>
-      </mat-card>
-    </div>
+  <div class="loading" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+    <p>Chargement des terrains...</p>
+  </div>
+
+  <div class="error" *ngIf="error">
+    <mat-icon>error</mat-icon>
+    <p>{{ error }}</p>
+    <button mat-raised-button (click)="loadCourts()">Réessayer</button>
   </div>
 </div>

@@ -1,40 +1,36 @@
 import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { MatListModule } from "@angular/material/list";
-import { MatCardModule } from "@angular/material/card";
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
-import { MatDialogModule, MatDialog } from "@angular/material/dialog";
-import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
-import { CourtDialogComponent } from "../court-dialog/court-dialog.component";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { CourtService } from "../../services/courtService/court.service";
 import { CourtOutputInterface } from "../../interfaces/output/courtOutputInterface";
+import { CourtListItemComponent } from "../court-list-item/court-list-item.component";
+import { CourtDetailDialogComponent } from "../court-detail-dialog/court-detail-dialog.component";
 
 @Component({
   selector: "app-court-list",
   standalone: true,
   imports: [
     CommonModule,
-    HttpClientModule,
-    MatListModule,
-    MatCardModule,
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    CourtListItemComponent,
   ],
   templateUrl: "./court-list.component.html",
   styleUrls: ["./court-list.component.css"],
 })
 export class CourtListComponent implements OnInit {
   courts: CourtOutputInterface[] = [];
-  selectedCourt: CourtOutputInterface | null = null;
-  private apiUrl = "http://localhost:8081/api/v1/courts";
+  loading = true;
+  error: string | null = null;
 
   constructor(
-    private http: HttpClient,
+    private courtService: CourtService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -42,95 +38,44 @@ export class CourtListComponent implements OnInit {
   }
 
   loadCourts(): void {
-    this.http.get<CourtOutputInterface[]>(this.apiUrl).subscribe({
+    this.loading = true;
+    this.error = null;
+    this.courtService.getAllCourts().subscribe({
       next: (data) => {
         this.courts = data;
+        this.loading = false;
       },
-      error: (error) => {
-        this.showMessage("Erreur lors du chargement des terrains");
-        console.error("Error loading courts:", error);
+      error: (err) => {
+        this.error = "Erreur lors du chargement des terrains";
+        this.loading = false;
+        console.error(err);
       },
     });
   }
 
-  selectCourt(court: CourtOutputInterface): void {
-    this.selectedCourt = court;
-  }
-
-  openAddDialog(): void {
-    const dialogRef = this.dialog.open(CourtDialogComponent, {
-      width: "500px",
-      data: { mode: "add" },
-      hasBackdrop: true,
-      disableClose: false,
-      panelClass: "court-dialog",
+  openCourtDetail(court: CourtOutputInterface): void {
+    const dialogRef = this.dialog.open(CourtDetailDialogComponent, {
+      width: "600px",
+      data: { court, mode: "view" },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.http.post<CourtOutputInterface>(this.apiUrl, result).subscribe({
-          next: () => {
-            this.showMessage("Terrain ajouté avec succès");
-            this.loadCourts();
-          },
-          error: (error) => {
-            this.showMessage("Erreur lors de l'ajout du terrain");
-            console.error("Error adding court:", error);
-          },
-        });
+      if (result === "updated" || result === "deleted") {
+        this.loadCourts();
       }
     });
   }
 
-  openEditDialog(court: CourtOutputInterface): void {
-    const dialogRef = this.dialog.open(CourtDialogComponent, {
-      width: "500px",
-      data: { mode: "edit", court: { ...court } },
-      hasBackdrop: true,
-      disableClose: false,
-      panelClass: "court-dialog",
+  openAddCourt(): void {
+    const dialogRef = this.dialog.open(CourtDetailDialogComponent, {
+      width: "600px",
+      data: { court: null, mode: "create" },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.http
-          .put<CourtOutputInterface>(`${this.apiUrl}/${court.id}`, result)
-          .subscribe({
-            next: () => {
-              this.showMessage("Terrain modifié avec succès");
-              this.loadCourts();
-              this.selectedCourt = null;
-            },
-            error: (error) => {
-              this.showMessage("Erreur lors de la modification du terrain");
-              console.error("Error updating court:", error);
-            },
-          });
+      if (result === "created") {
+        this.loadCourts();
       }
-    });
-  }
-
-  deleteCourt(id: number): void {
-    if (confirm("Êtes-vous sûr de vouloir supprimer ce terrain ?")) {
-      this.http.delete(`${this.apiUrl}/${id}`).subscribe({
-        next: () => {
-          this.showMessage("Terrain supprimé avec succès");
-          this.selectedCourt = null;
-          this.loadCourts();
-        },
-        error: (error) => {
-          this.showMessage("Erreur lors de la suppression du terrain");
-          console.error("Error deleting court:", error);
-        },
-      });
-    }
-  }
-
-  private showMessage(message: string): void {
-    this.snackBar.open(message, "Fermer", {
-      duration: 3000,
-      horizontalPosition: "end",
-      verticalPosition: "top",
     });
   }
 }

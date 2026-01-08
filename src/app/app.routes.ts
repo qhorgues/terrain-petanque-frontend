@@ -31,7 +31,7 @@ export const routes: Routes = [
    */
   { path: "map", component: MapPage },
 
-  { path: "courts", component: CourtPageComponent },
+  { path: "terrains", component: CourtPageComponent },
 
   /**
    * The main routes of the website.
