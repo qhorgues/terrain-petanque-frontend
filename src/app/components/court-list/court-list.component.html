@@ -11,12 +11,22 @@
     <div class="content">
       @if(courts.length > 0) {
         <div class="list">
-          <app-court-list-item
-            *ngFor="let court of courts"
-            [court]="court"
-            (click)="openCourtDetail(court)">
-          </app-court-list-item>
+          @for (court of pagedCourts; track $index) {
+            <app-court-list-item
+              [court]="court"
+              (click)="openCourtDetail(court)">
+            </app-court-list-item>
+          }
         </div>
+
+        <br/>
+
+        <mat-paginator
+          [length]="courts.length"
+          [pageSize]="pageSize"
+          [pageSizeOptions]="[4, 8, 12, 16]"
+          (page)="onPageChange($event)">
+        </mat-paginator>
       }
 
       <ng-template #noData>
