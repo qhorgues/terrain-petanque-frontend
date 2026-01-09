@@ -82,6 +82,10 @@ mat-paginator {
 
 
 @media (max-width: 120vh) {
+  .header {
+    gap: 0;
+  }
+
   .list {
     grid-template-columns: 1fr;
     row-gap: 24px;
