@@ -11,7 +11,6 @@ import { FormsModule  } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { RouterLink } from '@angular/router';
 import { MatAnchor } from "@angular/material/button";
-import { MatButton } from '@angular/material/button';
 
 /**
  * This class represent the login page.
@@ -19,7 +18,7 @@ import { MatButton } from '@angular/material/button';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [EmailFieldComponent, PasswordFieldComponent, ConfirmButtonComponent, TextFieldComponent, FormsModule, EmailFieldCheckerComponent, PasswordFieldCheckerComponent, RouterLink, MatAnchor, MatButton],
+  imports: [EmailFieldComponent, PasswordFieldComponent, ConfirmButtonComponent, TextFieldComponent, FormsModule, EmailFieldCheckerComponent, PasswordFieldCheckerComponent, RouterLink, MatAnchor],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.css'
 })
