@@ -7,6 +7,7 @@ import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { MapPage } from "./pages/map/map.page";
 import { CourtPageComponent } from "./pages/court-page/court-page.component";
 import { UserPage } from "./pages/user-list/user-list.component";
+import { ReservationPageComponent } from "./pages/reservation-page/reservation-page.component";
 
 /**
  * This constant defines the routes.
@@ -47,6 +48,12 @@ export const routes: Routes = [
   {
     path: "terrains",
     component: CourtPageComponent,
+    canActivate: [authGuard],
+  },
+
+  {
+    path: "reservations",
+    component: ReservationPageComponent,
     canActivate: [authGuard],
   },
 

@@ -1,0 +1,58 @@
+<div class="reservation-list-container">
+  <div class="header">
+    <h2>Réservations</h2>
+    <button mat-raised-button color="primary" (click)="openAddReservation()">
+      <mat-icon>add</mat-icon>
+      Ajouter une réservation
+    </button>
+  </div>
+
+  @if(!loading && !error) {
+    <div class="content">
+      @if(reservations.length > 0) {
+        <div class="list">
+          @for (reservation of pagedReservations; track $index) {
+            <app-reservation-list-item
+              [reservation]="reservation"
+              (click)="openReservationDetail(reservation)">
+            </app-reservation-list-item>
+          }
+        </div>
+
+        <br/>
+
+        <mat-paginator
+          [length]="reservations.length"
+          [pageSize]="pageSize"
+          [pageSizeOptions]="[4, 8, 12, 16]"
+          (page)="onPageChange($event)">
+        </mat-paginator>
+      }
+
+      <ng-template #noData>
+        <div class="no-data">
+          <mat-icon>event</mat-icon>
+          <p>Aucune réservation disponible</p>
+          <button mat-raised-button color="primary" (click)="openAddReservation()">
+            Ajouter la première réservation
+          </button>
+        </div>
+      </ng-template>
+    </div>
+  }
+
+  @if(loading) {
+    <div class="loading">
+      <mat-spinner></mat-spinner>
+      <p>Chargement des réservations...</p>
+    </div>
+  }
+
+  @if(error) {
+    <div class="error">
+      <mat-icon>error</mat-icon>
+      <p>{{ error }}</p>
+      <button mat-raised-button (click)="loadReservations()">Réessayer</button>
+    </div>
+  }
+</div>

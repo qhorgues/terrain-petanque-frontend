@@ -1,0 +1,24 @@
+<mat-card class="reservation-card">
+  <mat-card-content>
+    <div class="reservation-info">
+      <!-- Main info -->
+      <div class="main-info">
+        <mat-icon class="icon">event</mat-icon>
+        <div class="details">
+          <h3>{{ username }} → {{ courtName }}</h3>
+          <p class="description">
+            Réservation en cours
+          </p>
+        </div>
+      </div>
+
+      <!-- Meta info: only the reserved quantity -->
+      <div class="meta-info">
+        <div class="reservation-quantity">
+          <mat-icon>grid_view</mat-icon>
+          <span>{{ reservation.reservation }} réservé(s)</span>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
