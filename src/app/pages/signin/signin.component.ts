@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailFieldComponent } from "../../components/email-field/email-field.component";
+import { EmailFieldCheckerComponent  } from '../../components/email-field-checker/email-field-checker.component';
 import { PasswordFieldComponent } from "../../components/password-field/password-field.component";
+import { PasswordFieldCheckerComponent  } from '../../components/password-field-checker/password-field-checker.component';
 import { ConfirmButtonComponent } from "../../components/confirm-button/confirm-button.component";
+import { TextFieldComponent } from '../../components/text-field/text-field.component';
 import { UserInputInterface } from '../../interfaces/input/userInputInterface';
 import { UserService } from '../../services/userService/user.service';
 import { FormsModule  } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { RouterLink } from '@angular/router';
-import { MatAnchor } from '@angular/material/button';
+import { MatAnchor } from "@angular/material/button";
 import { MatButton } from '@angular/material/button';
 
 /**
@@ -16,11 +19,11 @@ import { MatButton } from '@angular/material/button';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ EmailFieldComponent, PasswordFieldComponent, ConfirmButtonComponent, FormsModule, RouterLink, MatAnchor, MatButton],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  imports: [EmailFieldComponent, PasswordFieldComponent, ConfirmButtonComponent, TextFieldComponent, FormsModule, EmailFieldCheckerComponent, PasswordFieldCheckerComponent, RouterLink, MatAnchor, MatButton],
+  templateUrl: './signin.component.html',
+  styleUrl: './signin.component.css'
 })
-export class LoginComponent implements OnInit {
+export class SigninComponent implements OnInit {
   /**
    * This attribute represents the credential.
    */
@@ -86,7 +89,10 @@ export class LoginComponent implements OnInit {
    * This method send the credential.
    */
   onSubmit() :void {
-    this.userService.login(this.credential, result => this.isValid = result);
+    this.userService.createUser(this.credential).subscribe({
+      next: (response) => this.userService.login(this.credential, result => this.isValid = result),
+      error: (error) => this.isValid = false
+    });
   }
 
 }

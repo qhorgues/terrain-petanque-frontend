@@ -21,4 +21,15 @@ h1  {
  */
 p {
   color: var(--secondary-color);
- }
+}
+
+
+
+/**
+ * Basic CSS for the title in mobile mode.
+ */
+@media (max-width: 120vh) {
+  h1  {
+    font-size: 3em;
+  }
+}

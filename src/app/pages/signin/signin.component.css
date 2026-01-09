@@ -36,7 +36,7 @@ p {
 /**
  * Basic CSS for the login page button.
  */
-.signin {
+.login {
   background-color: var(--primary-color);
   color: var(--background-color);
   border-radius: 20px;

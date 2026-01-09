@@ -44,4 +44,27 @@ export class PasswordFieldComponent {
   updatePassword() {
     this.password.emit(this.form.value);
   }
+
+
+
+  /**
+   * This method skip the toggle button when press the touch "enter"
+   *
+   * @param event The event register.
+   */
+  skipButton(event: Event) {
+    event.preventDefault();
+    const formField = event.target as HTMLElement;
+    const focusable = Array.from(document.querySelectorAll<HTMLElement>(
+      'input, button, select, textarea, a[href], [tabindex]:not([tabindex="-1"])'
+    )).filter(el => !el.hasAttribute('disabled'));
+
+    const index = focusable.indexOf(formField);
+
+    if (index >= 0 && index + 2 < focusable.length) {
+      focusable[index + 2].focus();
+  }
+}
+
+
 }
