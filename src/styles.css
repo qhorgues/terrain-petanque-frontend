@@ -14,6 +14,17 @@
     --background-color: #222;
     --secondary-background-color: #444;
   }
+
+  /**
+   * The Map has now a dark theme mode.
+   */
+  .leaflet-layer,
+  .leaflet-control-zoom-in,
+  .leaflet-control-zoom-out,
+  .leaflet-control-attribution {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+  }
+
 }
 
 html,
@@ -81,6 +92,44 @@ body {
   caret-color: red !important;
 }
 
+
+/* === PAGINATOR === */
+
+/* Main container */
+.mat-mdc-paginator {
+  background-color: var(--background-color)!important;
+  color: var(--primary-color)!important;
+}
+
+/* Page size selector */
+.mat-mdc-paginator-page-size {
+  color: var(--primary-color)!important;
+}
+
+/* Change paginator arrow color */
+.mat-mdc-paginator .mat-mdc-icon-button svg {
+  fill: var(--primary-color)!important;
+}
+
+/* Page size select arrow */
+.mat-mdc-paginator .mat-mdc-select-arrow svg {
+  fill: black!important;
+}
+
+.mat-mdc-icon-button:disabled {
+  opacity: 0.4!important;
+}
+
+/* Select dropdown */
+.mat-mdc-select-value {
+  color: black!important;
+}
+
+/* Hover effects */
+.mat-mdc-icon-button:hover {
+  background-color: color-mix(in oklab, var(--secondary-color) 10%, #0000)!important;
+}
+
 @media (prefers-color-scheme: dark) {
   .mat-mdc-form-field .mdc-notched-outline__leading,
   .mat-mdc-form-field .mdc-notched-outline__notch,
@@ -103,6 +152,16 @@ body {
   .mat-mdc-form-field .mat-mdc-input-element::placeholder {
     color: white !important;
   }
+
+  /* Select dropdown PAGINATOR */
+  .mat-mdc-select-value {
+    color: white!important;
+  }
+
+  /* Page size select arrow */
+.mat-mdc-paginator .mat-mdc-select-arrow svg {
+  fill: white!important;
+}
 }
 
 .leaflet-container img.leaflet-tile {

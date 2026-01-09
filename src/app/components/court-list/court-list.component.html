@@ -1,0 +1,58 @@
+<div class="court-list-container">
+  <div class="header">
+    <h2>Terrains de jeux</h2>
+    <button mat-raised-button color="primary" (click)="openAddCourt()">
+      <mat-icon>add</mat-icon>
+      Ajouter un terrain
+    </button>
+  </div>
+
+  @if(!loading && !error) {
+    <div class="content">
+      @if(courts.length > 0) {
+        <div class="list">
+          @for (court of pagedCourts; track $index) {
+            <app-court-list-item
+              [court]="court"
+              (click)="openCourtDetail(court)">
+            </app-court-list-item>
+          }
+        </div>
+
+        <br/>
+
+        <mat-paginator
+          [length]="courts.length"
+          [pageSize]="pageSize"
+          [pageSizeOptions]="[4, 8, 12, 16]"
+          (page)="onPageChange($event)">
+        </mat-paginator>
+      }
+
+      <ng-template #noData>
+        <div class="no-data">
+          <mat-icon>sports_tennis</mat-icon>
+          <p>Aucun terrain de jeux disponible</p>
+          <button mat-raised-button color="primary" (click)="openAddCourt()">
+            Ajouter le premier terrain
+          </button>
+        </div>
+      </ng-template>
+    </div>
+  }
+
+  @if(loading) {
+    <div class="loading">
+      <mat-spinner></mat-spinner>
+      <p>Chargement des terrains...</p>
+    </div>
+  }
+
+  @if(error) {
+    <div class="error">
+      <mat-icon>error</mat-icon>
+      <p>{{ error }}</p>
+      <button mat-raised-button (click)="loadCourts()">Réessayer</button>
+    </div>
+  }
+</div>

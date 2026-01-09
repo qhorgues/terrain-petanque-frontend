@@ -1,0 +1,18 @@
+<div class="dialog-box">
+  <div class="dialog-header">
+    <h2 mat-dialog-title>
+      {{ data.mode === 'create' ? 'Ajouter un terrain' : 'Détails du terrain' }}
+    </h2>
+    <button mat-icon-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <mat-dialog-content>
+    <app-court-detail
+      [court]="data.court"
+      [mode]="data.mode"
+      (closeDialog)="onClose($event)">
+    </app-court-detail>
+</mat-dialog-content>
+</div>

@@ -5,6 +5,7 @@ import { SigninComponent } from "./pages/signin/signin.component";
 import { authGuard } from "./services/auth/auth.guard";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { MapPage } from "./pages/map/map.page";
+import { CourtPageComponent } from "./pages/court-page/court-page.component";
 
 /**
  * This constant defines the routes.
@@ -36,6 +37,8 @@ export const routes: Routes = [
     component: MapPage,
     canActivate: [authGuard]
   },
+
+  { path: "terrains", component: CourtPageComponent },
 
   /**
    * The main routes of the website.

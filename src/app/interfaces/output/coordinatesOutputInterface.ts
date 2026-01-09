@@ -11,10 +11,10 @@ export interface CoordinatesOutputInterface {
   /**
    * This field is the coordinates' latitude.
    */
-  latitude: BigInt;
+  latitude: number;
 
   /**
    * This field is the coordinates' longitude.
    */
-  longitude: BigInt;
+  longitude: number;
 }
