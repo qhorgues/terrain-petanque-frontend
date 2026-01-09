@@ -6,7 +6,7 @@ import { authGuard } from "./services/auth/auth.guard";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { MapPage } from "./pages/map/map.page";
 import { CourtPageComponent } from "./pages/court-page/court-page.component";
-import { UserPages } from "./pages/user-list/user-list.component";
+import { UserPage } from "./pages/user-list/user-list.component";
 
 /**
  * This constant defines the routes.
@@ -40,7 +40,7 @@ export const routes: Routes = [
   },
   {
     path: "users",
-    component: UserPages,
+    component: UserPage,
     canActivate: [authGuard],
   },
 
