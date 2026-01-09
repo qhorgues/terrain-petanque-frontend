@@ -1,22 +1,24 @@
-<!-- The title -->
-<h1>Connection</h1>
+<div class="login-box">
+  <!-- The title -->
+  <h1>Connection</h1>
 
-<!-- The box of the form -->
-<div>
-    <!-- The form -->
-    <form (ngSubmit)="onSubmit()">
-        <!-- If the credential are invalid -->
-        @if(!isValid) {
-          <p>L'identifiant ou le mot de passe est incorrect.</p>
-        }
+  <!-- The box of the form -->
+  <div>
+      <!-- The form -->
+      <form (ngSubmit)="onSubmit()">
+          <!-- If the credential are invalid -->
+          @if(!isValid) {
+            <p>L'identifiant ou le mot de passe est incorrect.</p>
+          }
 
-        <!-- The email field -->
-        <app-email-field (email)="updateMail($event)"/>
+          <!-- The email field -->
+          <app-email-field (email)="updateMail($event)"/>
 
-        <!-- The password field -->
-        <app-password-field (password)="updatePassword($event)"/>
+          <!-- The password field -->
+          <app-password-field (password)="updatePassword($event)"/>
 
-        <!-- The button to send the credential -->
-        <app-confirm-button/>
-    </form>
+          <!-- The button to send the credential -->
+          <app-confirm-button/>
+      </form>
+  </div>
 </div>

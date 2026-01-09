@@ -29,9 +29,17 @@ export const routes: Routes = [
   /**
    * The map page.
    */
-  { path: "map", component: MapPage },
+  {
+    path: "map",
+    component: MapPage,
+    canActivate: [authGuard],
+  },
 
-  { path: "terrains", component: CourtPageComponent },
+  {
+    path: "terrains",
+    component: CourtPageComponent,
+    canActivate: [authGuard],
+  },
 
   /**
    * The main routes of the website.
