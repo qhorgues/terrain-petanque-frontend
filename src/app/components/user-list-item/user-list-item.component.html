@@ -1,0 +1,19 @@
+<mat-card class="user-card">
+  <mat-card-content>
+    <div class="user-info">
+      <div class="main-info">
+        <mat-icon class="icon">person</mat-icon>
+        <div class="details">
+          <h3>{{ user.name }} {{ user.surname }}</h3>
+          <p class="username">&#64;{{ user.username }}</p>
+        </div>
+      </div>
+      <div class="meta-info">
+        <div class="email">
+          <mat-icon>email</mat-icon>
+          <span>{{ user.mail }}</span>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

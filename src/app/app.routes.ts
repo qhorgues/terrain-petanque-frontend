@@ -6,6 +6,7 @@ import { authGuard } from "./services/auth/auth.guard";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { MapPage } from "./pages/map/map.page";
 import { CourtPageComponent } from "./pages/court-page/court-page.component";
+import { UserPages } from "./pages/user-list/user-list.component";
 
 /**
  * This constant defines the routes.
@@ -17,7 +18,7 @@ export const routes: Routes = [
   {
     path: "login",
     component: LoginComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
 
   /**
@@ -26,7 +27,7 @@ export const routes: Routes = [
   {
     path: "signin",
     component: SigninComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
 
   /**
@@ -35,6 +36,11 @@ export const routes: Routes = [
   {
     path: "map",
     component: MapPage,
+    canActivate: [authGuard],
+  },
+  {
+    path: "users",
+    component: UserPages,
     canActivate: [authGuard],
   },
 
@@ -50,7 +56,7 @@ export const routes: Routes = [
   {
     path: "",
     component: HomePageComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
 
   /**

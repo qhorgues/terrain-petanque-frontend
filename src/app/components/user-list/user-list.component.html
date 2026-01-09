@@ -1,0 +1,58 @@
+<div class="user-list-container">
+  <div class="header">
+    <h2>Utilisateurs</h2>
+    <button mat-raised-button color="primary" (click)="openAddUser()">
+      <mat-icon>person_add</mat-icon>
+      Ajouter un utilisateur
+    </button>
+  </div>
+
+  @if(!loading && !error) {
+    <div class="content">
+      @if(users.length > 0) {
+        <div class="list">
+          @for (user of pagedUsers; track $index) {
+            <app-user-list-item
+              [user]="user"
+              (click)="openUserDetail(user)">
+            </app-user-list-item>
+          }
+        </div>
+
+        <br/>
+
+        <mat-paginator
+          [length]="users.length"
+          [pageSize]="pageSize"
+          [pageSizeOptions]="[4, 8, 12, 16]"
+          (page)="onPageChange($event)">
+        </mat-paginator>
+      }
+
+      <ng-template #noData>
+        <div class="no-data">
+          <mat-icon>people</mat-icon>
+          <p>Aucun utilisateur disponible</p>
+          <button mat-raised-button color="primary" (click)="openAddUser()">
+            Ajouter le premier utilisateur
+          </button>
+        </div>
+      </ng-template>
+    </div>
+  }
+
+  @if(loading) {
+    <div class="loading">
+      <mat-spinner></mat-spinner>
+      <p>Chargement des utilisateurs...</p>
+    </div>
+  }
+
+  @if(error) {
+    <div class="error">
+      <mat-icon>error</mat-icon>
+      <p>{{ error }}</p>
+      <button mat-raised-button (click)="loadUsers()">Réessayer</button>
+    </div>
+  }
+</div>

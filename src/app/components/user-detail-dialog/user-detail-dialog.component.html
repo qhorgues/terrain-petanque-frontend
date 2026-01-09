@@ -1,0 +1,18 @@
+<div class="dialog-box">
+  <div class="dialog-header">
+    <h2 mat-dialog-title>
+      {{ data.mode === 'create' ? 'Ajouter un utilisateur' : 'Détails de l\'utilisateur' }}
+    </h2>
+    <button mat-icon-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <mat-dialog-content>
+    <app-user-detail
+      [user]="data.user"
+      [mode]="data.mode"
+      (closeDialog)="onClose($event)">
+    </app-user-detail>
+  </mat-dialog-content>
+</div>
