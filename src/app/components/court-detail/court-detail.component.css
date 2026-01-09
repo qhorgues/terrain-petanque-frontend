@@ -59,6 +59,10 @@ form {
   color: white;
 }
 
+.cancel-button {
+  color: var(--text-color);
+}
+
 .loading-overlay {
   position: absolute;
   top: 0;

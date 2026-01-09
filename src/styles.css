@@ -4,6 +4,7 @@
   --primary-color: #48f;
   --secondary-color: #468;
   --background-color: white;
+  --text-color: #222;
   --secondary-background-color: #ddd;
   --menu-bar-size: 120px;
 }
@@ -13,6 +14,7 @@
     --primary-color: #8cf;
     --secondary-color: #8ac;
     --background-color: #222;
+    --text-color: white;
     --secondary-background-color: #444;
     --menu-bar-size: 120px;
   }
