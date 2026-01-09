@@ -38,7 +38,11 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
 
-  { path: "terrains", component: CourtPageComponent },
+  {
+    path: "terrains",
+    component: CourtPageComponent,
+    canActivate: [authGuard]
+  },
 
   /**
    * The main routes of the website.
