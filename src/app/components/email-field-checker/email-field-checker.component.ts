@@ -82,7 +82,7 @@ export class EmailFieldCheckerComponent {
   matchValidEmailValidator() : ValidatorFn {
     return (control: AbstractControl) => {
       if (!this.valid_email) return null;
-      return control.value === this.valid_email() ? { emailMismatch: false } : { emailMismatch: true };
+      return control.value === this.valid_email() ? null : { emailMismatch: true };
     };
   }
 

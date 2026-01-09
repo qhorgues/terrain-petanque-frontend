@@ -6,7 +6,18 @@ h1 {
 }
 
 /**
- * The basic CSS for the form
+ * Basic CSS for the div.
+ */
+div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+/**
+ * The basic CSS for the page
  */
 form {
   display: flex;
@@ -20,4 +31,13 @@ form {
  */
 p {
   color: red;
+}
+
+/**
+ * Basic CSS for the login page button.
+ */
+.login {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border-radius: 20px;
 }

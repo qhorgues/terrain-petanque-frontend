@@ -6,6 +6,9 @@ import { UserInputInterface } from '../../interfaces/input/userInputInterface';
 import { UserService } from '../../services/userService/user.service';
 import { FormsModule  } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
+import { RouterLink } from '@angular/router';
+import { MatAnchor } from '@angular/material/button';
+import { MatButton } from '@angular/material/button';
 
 /**
  * This class represent the login page.
@@ -13,7 +16,7 @@ import { AuthService } from '../../services/auth/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ EmailFieldComponent, PasswordFieldComponent, ConfirmButtonComponent, FormsModule],
+  imports: [ EmailFieldComponent, PasswordFieldComponent, ConfirmButtonComponent, FormsModule, RouterLink, MatAnchor, MatButton],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

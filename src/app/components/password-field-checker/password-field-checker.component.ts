@@ -69,7 +69,6 @@ export class PasswordFieldCheckerComponent {
    * This method update the password when it changes.
    */
   updatePassword() {
-    this.form.updateValueAndValidity();
     if (this.form.hasError('passwordMismatch')) {
       this.errorMessage.set("Les mots de passe ne se correspondent pas")
     } else {

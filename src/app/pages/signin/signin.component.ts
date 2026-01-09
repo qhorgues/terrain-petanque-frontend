@@ -9,6 +9,9 @@ import { UserInputInterface } from '../../interfaces/input/userInputInterface';
 import { UserService } from '../../services/userService/user.service';
 import { FormsModule  } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
+import { RouterLink } from '@angular/router';
+import { MatAnchor } from "@angular/material/button";
+import { MatButton } from '@angular/material/button';
 
 /**
  * This class represent the login page.
@@ -16,7 +19,7 @@ import { AuthService } from '../../services/auth/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ EmailFieldComponent, PasswordFieldComponent, ConfirmButtonComponent, TextFieldComponent, FormsModule, EmailFieldCheckerComponent, PasswordFieldCheckerComponent],
+  imports: [EmailFieldComponent, PasswordFieldComponent, ConfirmButtonComponent, TextFieldComponent, FormsModule, EmailFieldCheckerComponent, PasswordFieldCheckerComponent, RouterLink, MatAnchor, MatButton],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.css'
 })
@@ -51,7 +54,7 @@ export class SigninComponent implements OnInit {
   ngOnInit() : void {
     setInterval(() => {
       if (this.authService.isLoggedIn()) {
-        //window.location.href = "/"; //This force to reload all the website. So the user is now connected and the menu is the correct menu.
+        window.location.href = "/"; //This force to reload all the website. So the user is now connected and the menu is the correct menu.
       }
     }, 100);
   }
@@ -87,9 +90,9 @@ export class SigninComponent implements OnInit {
    */
   onSubmit() :void {
     this.userService.createUser(this.credential).subscribe({
+      next: (response) => this.userService.login(this.credential, result => this.isValid = result),
       error: (error) => this.isValid = false
-    })
-    this.userService.login(this.credential, result => this.isValid = result);
+    });
   }
 
 }

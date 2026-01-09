@@ -7,31 +7,34 @@
     <form (ngSubmit)="onSubmit()">
         <!-- If the credential are invalid -->
         @if(!isValid) {
-          <p>Un utilisateur existe avec vos données existe déjà.</p>
+          <p>Un utilisateur avec vos données existe déjà.</p>
         }
 
         <!-- The name field -->
-        <app-text-field label="Nom" placeholder="Hurel" (value)="credential.name"/>
+        <app-text-field label="Nom" placeholder="Smith" (value)="credential.name"/>
 
         <!-- The surname field -->
-        <app-text-field label="Prenom" placeholder="Lisa" (value)="credential.surname"/>
+        <app-text-field label="Prenom" placeholder="John" (value)="credential.surname"/>
 
         <!-- The username field -->
-        <app-text-field label="Pseudo" placeholder="Lisa Hurel" (value)="credential.username"/>
+        <app-text-field label="Pseudo" placeholder="John Smith" (value)="credential.username"/>
 
         <!-- The email field -->
         <app-email-field (email)="updateMail($event)"/>
 
         <!-- The email checker field -->
-        <app-email-field-checker [valid_email]="credential.mail" (email)="updateMail($event)"/>
+        <app-email-field-checker [valid_email]="credential.mail"/>
 
         <!-- The password field -->
         <app-password-field (password)="updatePassword($event)"/>
 
         <!-- The password checker field -->
-        <app-password-field-checker [valid_password]="credential.password" (password)="updatePassword($event)"/>
+        <app-password-field-checker [valid_password]="credential.password"/>
 
         <!-- The button to send the credential -->
         <app-confirm-button/>
     </form>
+
+    <!-- If the user want to go back in the login page -->
+    <a mat-button class="login" routerLink="/login">Déjà inscrit ?</a>
 </div>
