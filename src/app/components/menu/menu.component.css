@@ -2,7 +2,7 @@
  * Basic CSS to the up bar.
  */
 mat-toolbar {
-  position: relative;
+  position: fixed;
   background-color: var(--background-color);
   color: var(--primary-color);
   box-shadow:

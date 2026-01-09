@@ -35,13 +35,13 @@ export const routes: Routes = [
   {
     path: "map",
     component: MapPage,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
 
   {
     path: "terrains",
     component: CourtPageComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
 
   /**

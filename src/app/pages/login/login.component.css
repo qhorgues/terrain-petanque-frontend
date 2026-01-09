@@ -26,6 +26,10 @@ form {
   align-items: center;
 }
 
+.login-box {
+  margin-top: calc(0px - var(--menu-bar-size));
+}
+
 /**
  * The basic CSS for the error message.
  */

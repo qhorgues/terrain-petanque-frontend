@@ -5,6 +5,7 @@
   --secondary-color: #468;
   --background-color: white;
   --secondary-background-color: #ddd;
+  --menu-bar-size: 120px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,6 +14,7 @@
     --secondary-color: #8ac;
     --background-color: #222;
     --secondary-background-color: #444;
+    --menu-bar-size: 120px;
   }
 
   /**
@@ -24,7 +26,6 @@
   .leaflet-control-attribution {
     filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
   }
-
 }
 
 html,
@@ -92,42 +93,45 @@ body {
   caret-color: red !important;
 }
 
-
 /* === PAGINATOR === */
 
 /* Main container */
 .mat-mdc-paginator {
-  background-color: var(--background-color)!important;
-  color: var(--primary-color)!important;
+  background-color: var(--background-color) !important;
+  color: var(--primary-color) !important;
 }
 
 /* Page size selector */
 .mat-mdc-paginator-page-size {
-  color: var(--primary-color)!important;
+  color: var(--primary-color) !important;
 }
 
 /* Change paginator arrow color */
 .mat-mdc-paginator .mat-mdc-icon-button svg {
-  fill: var(--primary-color)!important;
+  fill: var(--primary-color) !important;
 }
 
 /* Page size select arrow */
 .mat-mdc-paginator .mat-mdc-select-arrow svg {
-  fill: black!important;
+  fill: black !important;
 }
 
 .mat-mdc-icon-button:disabled {
-  opacity: 0.4!important;
+  opacity: 0.4 !important;
 }
 
 /* Select dropdown */
 .mat-mdc-select-value {
-  color: black!important;
+  color: black !important;
 }
 
 /* Hover effects */
 .mat-mdc-icon-button:hover {
-  background-color: color-mix(in oklab, var(--secondary-color) 10%, #0000)!important;
+  background-color: color-mix(
+    in oklab,
+    var(--secondary-color) 10%,
+    #0000
+  ) !important;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -155,13 +159,13 @@ body {
 
   /* Select dropdown PAGINATOR */
   .mat-mdc-select-value {
-    color: white!important;
+    color: white !important;
   }
 
   /* Page size select arrow */
-.mat-mdc-paginator .mat-mdc-select-arrow svg {
-  fill: white!important;
-}
+  .mat-mdc-paginator .mat-mdc-select-arrow svg {
+    fill: white !important;
+  }
 }
 
 .leaflet-container img.leaflet-tile {

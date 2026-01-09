@@ -25,5 +25,6 @@ mat-drawer {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: calc(100% - var(--menu-bar-size));
+  padding-top: var(--menu-bar-size);
 }
